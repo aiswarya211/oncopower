@@ -14,16 +14,21 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  cupertino_icons: ^1.0.2
+  flutter_localizations:
+    sdk: flutter
+  domain:
+    path: domain
+  data:
+    path: data
+  flutter_riverpod: ^1.0.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  
 
   flutter_lints: ^2.0.0
-
+  
 flutter:
 
   # The following line ensures that the Material Icons font is
