@@ -5,7 +5,7 @@ import 'package:oncopower/main/my_app.dart';
 
 
 void main() {
-  runApp(const ProviderScope(
+  runApp( ProviderScope(
     child: MyApp()
   ));
 }

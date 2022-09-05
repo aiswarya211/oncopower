@@ -10,13 +10,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  data:
+    path: ../data
+  dartz: ^0.10.1
+  rxdart: ^0.27.3
+  riverpod: ^1.0.3
 
 dev_dependencies:
   flutter_test:
-    sdk: flutter
-  data:
-    path: ../data  
+    sdk: flutter  
   flutter_lints: ^2.0.0
 
 # For information on the generic Dart part of this file, see the
