@@ -7,7 +7,7 @@ import 'package:oncopower/utils/font.dart';
 class CustomText extends StatelessWidget {
   final String? text;
   final double fontSize;
-  final String font;
+
   final Color color;
   final double lineHeight;
   final TextAlign textAlign;
@@ -25,7 +25,7 @@ class CustomText extends StatelessWidget {
   const CustomText(
     this.text, {
     this.fontSize = 14,
-    this.font = Font.quicksand,
+
     this.color = ColorResource.darkBlack,
     this.lineHeight = 1.21,
     this.textAlign = TextAlign.left,
@@ -50,8 +50,7 @@ class CustomText extends StatelessWidget {
       overflow: isSingleLine ? TextOverflow.ellipsis : null,
       softWrap: true,
       maxLines: maxLines,
-      style: GoogleFonts.getFont(
-        font,
+      style: GoogleFonts.nunito(
         textStyle: TextStyle(
           decoration: isLineThrough
               ? TextDecoration.lineThrough
@@ -72,8 +71,7 @@ class CustomText extends StatelessWidget {
       showCursor: true,
       maxLines: maxLines,
       toolbarOptions: const ToolbarOptions(copy: true, selectAll: true),
-      style: GoogleFonts.getFont(
-        font,
+      style: GoogleFonts.nunito(
         textStyle: TextStyle(
           decoration: isLineThrough
               ? TextDecoration.lineThrough

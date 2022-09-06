@@ -249,6 +249,76 @@ class S {
       args: [],
     );
   }
+
+  /// `oncopower`
+  String get oncopower {
+    return Intl.message(
+      'oncopower',
+      name: 'oncopower',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter email ID`
+  String get hintEmailId {
+    return Intl.message(
+      'Enter email ID',
+      name: 'hintEmailId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Password`
+  String get hintPassword {
+    return Intl.message(
+      'Enter Password',
+      name: 'hintPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email ID`
+  String get lableEmailId {
+    return Intl.message(
+      'Email ID',
+      name: 'lableEmailId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get lablePassword {
+    return Intl.message(
+      'Password',
+      name: 'lablePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don't have an account? `
+  String get haveNotAccount {
+    return Intl.message(
+      'Don\'t have an account? ',
+      name: 'haveNotAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Signup`
+  String get signUpText {
+    return Intl.message(
+      'Signup',
+      name: 'signUpText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

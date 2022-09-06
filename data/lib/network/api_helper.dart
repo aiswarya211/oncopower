@@ -8,9 +8,9 @@ import 'package:dio/dio.dart';
 import 'package:domain/error/local_error.dart';
 import 'package:flutter/foundation.dart';
 
-class DioHelper {
+class ApiHelper {
   Dio dio = Dio();
-  DioHelper() {
+  ApiHelper() {
     dio.options.baseUrl = NetworkProperties.baseUrl;
     dio.options.followRedirects = true;
     dio.options.headers[HttpHeaders.acceptHeader] = "application/json";

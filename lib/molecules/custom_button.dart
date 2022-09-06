@@ -1,17 +1,17 @@
-
 import 'package:flutter/material.dart';
 import 'package:oncopower/molecules/custom_text.dart';
 import 'package:oncopower/utils/color_resources.dart';
-import 'package:oncopower/utils/font.dart';
+
 
 class CustomButton extends StatelessWidget {
   final String text;
   final Color backGroundColor;
-  final String font;
+
   final double fontSize;
   final FontWeight fontWeight;
   final double borderRadius;
   final Color? borderColor;
+  final TextAlign textAlign;
   final Function()? onPressed;
   final Color fontColor;
   final Widget? icon;
@@ -22,11 +22,12 @@ class CustomButton extends StatelessWidget {
 
   const CustomButton(
       {required this.text,
-      this.backGroundColor = ColorResource.darkBlack,
-      this.font = Font.quicksand,
+      this.backGroundColor = ColorResource.lightYellow,
+    
       this.fontSize = 16,
       this.borderRadius = 20,
       required this.onPressed,
+      this.textAlign = TextAlign.center,
       this.fontColor = ColorResource.white,
       this.horizontalPadding = 8,
       this.verticalPadding = 8,
@@ -48,7 +49,10 @@ class CustomButton extends StatelessWidget {
       ),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          onPrimary: splashColor,
+          fixedSize: const Size(300, 50),
+          foregroundColor: splashColor,
+          backgroundColor:
+              gradient != null ? ColorResource.lightYellow : backGroundColor,
           shape: RoundedRectangleBorder(
             side: borderColor != null
                 ? BorderSide(color: borderColor!)
@@ -56,7 +60,6 @@ class CustomButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(borderRadius),
           ),
           elevation: 0,
-          primary: gradient != null ? Colors.transparent : backGroundColor,
         ),
         onPressed: onPressed,
         child: Padding(
@@ -76,8 +79,9 @@ class CustomButton extends StatelessWidget {
               Flexible(
                 child: CustomText(
                   text,
-                  font: font,
+            
                   fontSize: fontSize,
+                  textAlign: textAlign,
                   fontWeight: fontWeight,
                   color: fontColor,
                 ),

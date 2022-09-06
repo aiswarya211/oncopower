@@ -18,7 +18,7 @@ class BeamerRoutes {
     notFoundPage: notFoundPage,
     guards: [
       BeamGuard(
-        pathPatterns: ["/login", "/forgot-password", "/reset-password"],
+        pathPatterns: ["/login"],
         guardNonMatching: true,
         beamToNamed: (c, a) => "/login",
         check: (context, location) {

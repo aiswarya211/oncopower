@@ -40,13 +40,21 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Forget password?"),
         "genericError": MessageLookupByLibrary.simpleMessage(
             "Something went wrong. Please try again."),
+        "haveNotAccount":
+            MessageLookupByLibrary.simpleMessage("Don\'t have an account? "),
+        "hintEmailId": MessageLookupByLibrary.simpleMessage("Enter email ID"),
+        "hintPassword": MessageLookupByLibrary.simpleMessage("Enter Password"),
+        "lableEmailId": MessageLookupByLibrary.simpleMessage("Email ID"),
+        "lablePassword": MessageLookupByLibrary.simpleMessage("Password"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "methodNotAllowed":
             MessageLookupByLibrary.simpleMessage("405 Method Not Allowed"),
+        "oncopower": MessageLookupByLibrary.simpleMessage("oncopower"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "serverBroken":
             MessageLookupByLibrary.simpleMessage("500 Server Broken"),
+        "signUpText": MessageLookupByLibrary.simpleMessage("Signup"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "success": MessageLookupByLibrary.simpleMessage("SUCCESS"),
         "tooManyRequests":

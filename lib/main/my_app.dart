@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:oncopower/base/base_widget.dart';
 import 'package:oncopower/di/app_modules.dart';
+import 'package:oncopower/generated/l10n.dart';
 import 'package:oncopower/main/app_view_model.dart';
 import 'package:oncopower/main/locations.dart';
 
@@ -36,11 +37,11 @@ class MyApp extends ConsumerWidget {
           debugShowCheckedModeBanner: false,
           routeInformationParser: BeamerParser(),
           localizationsDelegates: const [
-            // S.delegate,
+            S.delegate,
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate
           ],
-          // supportedLocales: S.delegate.supportedLocales,
+          supportedLocales: S.delegate.supportedLocales,
           locale: const Locale('en'),
           backButtonDispatcher:
               BeamerBackButtonDispatcher(delegate: BeamerRoutes.routerDelegate),

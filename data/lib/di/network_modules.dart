@@ -4,9 +4,9 @@ import 'package:data/network/api_service.dart';
 import 'package:data/source/login/remote/login_data_source_impl.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final dioProvider = Provider<DioHelper>(
+final dioProvider = Provider<ApiHelper>(
   (ref) {
-    DioHelper dio = DioHelper();
+    ApiHelper dio = ApiHelper();
     return dio;
   },
 );

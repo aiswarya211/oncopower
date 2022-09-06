@@ -1,4 +1,5 @@
 import 'package:beamer/beamer.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class CustomTransitionPage extends BeamPage {
@@ -15,7 +16,16 @@ class CustomTransitionPage extends BeamPage {
   String get title => pageTitle!;
 
   @override
+
+  
+ @override
   Route createRoute(BuildContext context) {
+    if (kIsWeb) {
+      return PageRouteBuilder(
+        settings: this,
+        pageBuilder: (context, animation, secondaryAnimation) => childWidget!,
+      );
+    }
     return MaterialPageRoute(
       settings: this,
       builder: (context) => childWidget!,

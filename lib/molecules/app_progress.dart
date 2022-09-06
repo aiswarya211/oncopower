@@ -16,10 +16,10 @@ class AppProgress {
             child: Center(
                 child: SizedBox(
               child: LoadingAnimationWidget.discreteCircle(
-                color: Colors.white,
-                size: 110,
-                secondRingColor: ColorResource.hashgray,
-                thirdRingColor: ColorResource.white,
+                color: Colors.blue,
+                size: 20,
+                secondRingColor: ColorResource.mediumBlue,
+                
               ),
             )),
           );

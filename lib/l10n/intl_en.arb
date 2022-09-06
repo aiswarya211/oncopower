@@ -18,5 +18,12 @@
   "checkYourInternetConnection": "Please check your internet connection",
   "submit": "Submit",
   "unauthenticated": "Un Authenticated",
-  "forgetPassword": "Forget password?"
+  "forgetPassword": "Forget password?",
+  "oncopower": "oncopower",
+  "hintEmailId":"Enter email ID",
+  "hintPassword": "Enter Password",
+  "lableEmailId":"Email ID",
+  "lablePassword":"Password",
+  "haveNotAccount":"Don't have an account? ",
+  "signUpText": "Signup"
 }
