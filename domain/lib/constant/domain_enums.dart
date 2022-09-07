@@ -10,6 +10,7 @@ enum ErrorType {
   netNoInternetConnection,
   tooManyRequest,
   unAuthorized,
+  invaildCredentials,
 
   // UI ERROR
   invaildEmail,

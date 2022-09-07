@@ -50,10 +50,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Educator`
+  /// `oncopower`
   String get appName {
     return Intl.message(
-      'Educator',
+      'oncopower',
       name: 'appName',
       desc: '',
       args: [],
@@ -230,11 +230,21 @@ class S {
     );
   }
 
-  /// `Un Authenticated`
+  /// `invalid Credentials`
   String get unauthenticated {
     return Intl.message(
-      'Un Authenticated',
+      'invalid Credentials',
       name: 'unauthenticated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `invalid Credentials`
+  String get invalidCredentials {
+    return Intl.message(
+      'invalid Credentials',
+      name: 'invalidCredentials',
       desc: '',
       args: [],
     );

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oncopower/utils/color_resources.dart';
-import 'package:oncopower/utils/font.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
@@ -44,10 +43,10 @@ class CustomTextField extends StatelessWidget {
     this.controller,
     this.hintText,
     this.labelText,
-    this.labelColor = ColorResource.darkBlack,
-    this.hintColor = ColorResource.darkash,
+    this.labelColor = ColorResource.color1a1a1a,
+    this.hintColor = ColorResource.color82808e,
     this.hintSize = 14,
-    this.inputTextColor = ColorResource.darkBlack,
+    this.inputTextColor = ColorResource.color1a1a1a,
     this.inputTextSize = 14,
     this.keyboardType,
     this.isEnabled = true,
@@ -77,71 +76,83 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        margin: EdgeInsets.symmetric(
-          horizontal: horizontalMargin,
-          vertical: verticalMargin,
-        ),
-        decoration: BoxDecoration(
-          color: fillColor,
-          borderRadius: BorderRadius.circular(borderRadius),
-          border: borderColor != null ? Border.all(color: borderColor!) : null,
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(borderRadius),
-                child: TextFormField(
-                  controller: controller,
-                  keyboardType: keyboardType,
-                  enabled: isEnabled,
-                  autofocus: autoFocus,
-                  onFieldSubmitted: onFieldSubmitted,
-                  autofillHints: autofillHints,
-                  textCapitalization: textCapitalization,
-                  inputFormatters: inputFormatters,
-                  onChanged: onChanged,
-                  onTap: onTap,
-                  obscureText: isObscure,
-                  maxLines: maxLines,
-                  style: GoogleFonts.nunito(
-                    textStyle: TextStyle(
-                      color: inputTextColor,
-                      fontSize: inputTextSize,
-                      fontWeight: inputFontWeight,
-                    ),
-                  ),
-                  decoration: InputDecoration(
-                    hintText: hintText,
-                    labelText: labelText,
-                    hintStyle: GoogleFonts.nunito(
+    return Stack(
+      children: [
+        // Padding(
+        //   padding: const EdgeInsets.only(left: 50, bottom: 40),
+        //   child: Container(
+        //     color: ColorResource.white,
+        //     child: CustomText(S.of(context).lableEmailId),
+        //   ),
+        // ),
+        Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: horizontalMargin,
+            vertical: verticalMargin,
+          ),
+          decoration: BoxDecoration(
+            color: fillColor,
+            borderRadius: BorderRadius.circular(borderRadius),
+            border: borderColor != null
+                ? Border.all(
+                    color: borderColor!,
+                  )
+                : null,
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(borderRadius),
+                  child: TextFormField(
+                    controller: controller,
+                    keyboardType: keyboardType,
+                    enabled: isEnabled,
+                    autofocus: autoFocus,
+                    onFieldSubmitted: onFieldSubmitted,
+                    autofillHints: autofillHints,
+                    textCapitalization: textCapitalization,
+                    inputFormatters: inputFormatters,
+                    onChanged: onChanged,
+                    onTap: onTap,
+                    obscureText: isObscure,
+                    maxLines: maxLines,
+                    style: GoogleFonts.nunito(
                       textStyle: TextStyle(
-                        color: hintColor,
-                        fontSize: hintSize,
+                        color: inputTextColor,
+                        fontSize: inputTextSize,
+                        fontWeight: inputFontWeight,
                       ),
                     ),
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: horizontalPadding,
-                      vertical: verticalPadding,
+                    decoration: InputDecoration(
+                      hintText: hintText,
+                      labelText: labelText,
+                      hintStyle: GoogleFonts.nunito(
+                        textStyle: TextStyle(
+                          color: hintColor,
+                          fontSize: hintSize,
+                        ),
+                      ),
+                      contentPadding: EdgeInsets.symmetric(
+                        horizontal: horizontalPadding,
+                        vertical: verticalPadding,
+                      ),
+                      prefixIcon: leadingWidget,
+                      prefixIconConstraints: leadingWidgetContraints,
+                      border: InputBorder.none,
                     ),
-                    prefixIcon: leadingWidget,
-                    prefixIconConstraints: leadingWidgetContraints,
-                    border: InputBorder.none,
                   ),
                 ),
               ),
-            ),
-            if (suffixWidget != null)
-              Container(
-                margin: const EdgeInsets.only(right: 10),
-                child: suffixWidget,
-              ),
-          ],
+              if (suffixWidget != null)
+                Container(
+                  margin: const EdgeInsets.only(right: 10),
+                  child: suffixWidget,
+                ),
+            ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }

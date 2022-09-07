@@ -6,7 +6,6 @@ import 'package:oncopower/base/base_view_model.dart';
 import 'package:oncopower/utils/app_subject.dart';
 import 'package:oncopower/utils/enums.dart';
 import 'package:oncopower/utils/resource.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 class AppViewModel extends BaseViewModel with AppViewModelStreams {
   Stream<AuthenticationStatus> get authStateStream => _authStateResponse.stream;
@@ -24,21 +23,21 @@ class AppViewModel extends BaseViewModel with AppViewModelStreams {
   UserEntity? get currentUserValue => _currentUserResponse.value?.data;
 
   AppViewModel() {
-    listenAppVersionRequest();
+    // listenAppVersionRequest();
     listenAuthStateRequest();
     listenCurrentTokenRequest();
     listenCurrentUserRequest();
     getPackageInfo();
     login();
   }
-  void listenAppVersionRequest() {
-    _appVersionRequest.listen((value) async {
-      if (value) {
-        PackageInfo packageInfo = await PackageInfo.fromPlatform();
-        _appVersionResponse.add(packageInfo.version);
-      }
-    });
-  }
+  // void listenAppVersionRequest() {
+  //   _appVersionRequest.listen((value) async {
+  //     if (value) {
+  //       PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  //       _appVersionResponse.add(packageInfo.version);
+  //     }
+  //   });
+  // }
 
   void listenAuthStateRequest() {
     _authStateRequest.listen((value) {

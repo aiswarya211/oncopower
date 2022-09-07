@@ -41,7 +41,8 @@ class NetworkError extends BaseError {
       case "405":
         return AppError(
             cause: cause, error: error, type: ErrorType.methodNotAllowed);
-
+      case "422":
+      return AppError(cause: cause, error: error, type: ErrorType.ioException);
       case "429":
         return AppError(
             cause: cause, error: error, type: ErrorType.tooManyRequest);

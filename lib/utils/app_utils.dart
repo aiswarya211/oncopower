@@ -19,7 +19,7 @@ class AppUtils {
         toastLength: Toast.LENGTH_SHORT,
         gravity: toastGravity ?? ToastGravity.BOTTOM,
         backgroundColor: color,
-        textColor: Colors.white,
+        // textColor: Colors.white,
         webBgColor: webColor,
         webShowClose: true,
         timeInSecForIosWeb: 3,

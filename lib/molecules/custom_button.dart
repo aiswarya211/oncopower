@@ -22,13 +22,13 @@ class CustomButton extends StatelessWidget {
 
   const CustomButton(
       {required this.text,
-      this.backGroundColor = ColorResource.lightYellow,
+      this.backGroundColor = ColorResource.colorffbb00,
     
       this.fontSize = 16,
       this.borderRadius = 20,
       required this.onPressed,
       this.textAlign = TextAlign.center,
-      this.fontColor = ColorResource.white,
+      this.fontColor = ColorResource.colorffffff,
       this.horizontalPadding = 8,
       this.verticalPadding = 8,
       this.borderColor,
@@ -52,7 +52,7 @@ class CustomButton extends StatelessWidget {
           fixedSize: const Size(300, 50),
           foregroundColor: splashColor,
           backgroundColor:
-              gradient != null ? ColorResource.lightYellow : backGroundColor,
+              gradient != null ? ColorResource.colorffbb00 : backGroundColor,
           shape: RoundedRectangleBorder(
             side: borderColor != null
                 ? BorderSide(color: borderColor!)

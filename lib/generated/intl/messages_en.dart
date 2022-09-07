@@ -22,7 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "appName": MessageLookupByLibrary.simpleMessage("Educator"),
+        "appName": MessageLookupByLibrary.simpleMessage("oncopower"),
         "checkYourInternetConnection": MessageLookupByLibrary.simpleMessage(
             "Please check your internet connection"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
@@ -44,6 +44,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Don\'t have an account? "),
         "hintEmailId": MessageLookupByLibrary.simpleMessage("Enter email ID"),
         "hintPassword": MessageLookupByLibrary.simpleMessage("Enter Password"),
+        "invalidCredentials":
+            MessageLookupByLibrary.simpleMessage("invalid Credentials"),
         "lableEmailId": MessageLookupByLibrary.simpleMessage("Email ID"),
         "lablePassword": MessageLookupByLibrary.simpleMessage("Password"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
@@ -60,6 +62,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "tooManyRequests":
             MessageLookupByLibrary.simpleMessage("Too many requests"),
         "unauthenticated":
-            MessageLookupByLibrary.simpleMessage("Un Authenticated")
+            MessageLookupByLibrary.simpleMessage("invalid Credentials")
       };
 }

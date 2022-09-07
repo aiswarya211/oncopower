@@ -19,6 +19,11 @@ class PreferenceHelper {
     }
   }
 
+  static Future clearStorage() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+  }
+
   static Future<Either<LocalError, String?>> getToken() async {
     try {
       String? value;
@@ -52,7 +57,6 @@ class PreferenceHelper {
           LocalError(cause: e as Exception, databaseError: "", message: ""));
     }
   }
-
 
   static Future<Either<LocalError, bool>> saveUser(UserEntity? user) async {
     try {

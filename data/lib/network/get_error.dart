@@ -6,11 +6,13 @@ import 'package:domain/error/network_error.dart';
 
 NetworkError getError({Response? apiResponse}) {
   if (apiResponse?.data != null) {
+    print([apiResponse?.data,'hloooo']);
     try {
       final ErrorResponseEntity errorResponseEntity =
           ErrorResponseEntity.fromJson((apiResponse?.data) is String
               ? jsonDecode(apiResponse?.data)
               : apiResponse?.data as Map<String, dynamic>);
+              print([errorResponseEntity.message,'jhuu']);
       return NetworkError(
           httpError: apiResponse!.statusCode.toString(),
           errorCode: errorResponseEntity.message!,

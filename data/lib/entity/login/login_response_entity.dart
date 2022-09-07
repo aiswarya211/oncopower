@@ -6,13 +6,12 @@ part 'login_response_entity.g.dart';
 
 @JsonSerializable()
 class LoginResponseEntity extends BaseEntity {
-  @JsonKey(name: 'token')
-  final String? token;
-  final UserEntity? user;
+  LoginData? loginData;
 
-  LoginResponseEntity(String? message, String? error, this.token, this.user)
+  LoginResponseEntity(String? message, String? error, this.loginData)
       : super(message, error);
 
-  factory LoginResponseEntity.fromJson(Map<String, dynamic> json) => _$LoginResponseEntityFromJson(json);
+  factory LoginResponseEntity.fromJson(Map<String, dynamic> json) =>
+      _$LoginResponseEntityFromJson(json);
   Map<String, dynamic> toJson() => _$LoginResponseEntityToJson(this);
 }

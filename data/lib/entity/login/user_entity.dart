@@ -1,6 +1,17 @@
-
 import 'package:json_annotation/json_annotation.dart';
 part 'user_entity.g.dart';
+
+@JsonSerializable()
+class LoginData {
+  @JsonKey(name: 'token')
+  final String? token;
+  final UserEntity? user;
+
+  LoginData({this.token, this.user});
+
+  factory LoginData.fromJson(Map<String, dynamic> json) => _$LoginDataFromJson(json);
+  Map<String, dynamic> toJson() => _$LoginDataToJson(this);
+}
 
 @JsonSerializable()
 class UserEntity {
@@ -19,7 +30,7 @@ class UserEntity {
   @JsonKey(name: 'media')
   Media? media;
 
- UserEntity(
+  UserEntity(
       {this.email,
       this.firstName,
       this.lastName,
@@ -29,7 +40,8 @@ class UserEntity {
       this.displayName,
       this.source});
 
-  factory UserEntity.fromJson(Map<String, dynamic> json) => _$UserEntityFromJson(json);
+  factory UserEntity.fromJson(Map<String, dynamic> json) =>
+      _$UserEntityFromJson(json);
   Map<String, dynamic> toJson() => _$UserEntityToJson(this);
 }
 

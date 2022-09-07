@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oncopower/utils/app_utils.dart';
 import 'package:oncopower/utils/color_resources.dart';
-import 'package:oncopower/utils/font.dart';
 
 class CustomText extends StatelessWidget {
   final String? text;
@@ -26,7 +25,7 @@ class CustomText extends StatelessWidget {
     this.text, {
     this.fontSize = 14,
 
-    this.color = ColorResource.darkBlack,
+    this.color = ColorResource.color1a1a1a,
     this.lineHeight = 1.21,
     this.textAlign = TextAlign.left,
     this.onTap,

@@ -15,6 +15,8 @@ class ErrorResponseEntity {
   final String? exceptionMessage;
   @JsonKey(name: "id")
   final String? id;
+  @JsonKey(name: "error_message")
+  final String? errorMessage; 
 
   ErrorResponseEntity(
       {this.code,
@@ -22,7 +24,7 @@ class ErrorResponseEntity {
       this.exceptionMessage,
       this.message,
       this.token,
-      this.id});
+      this.id,this.errorMessage});
 
   factory ErrorResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$ErrorResponseEntityFromJson(json);

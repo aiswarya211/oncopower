@@ -9,7 +9,7 @@ class AppProgress {
         context: context,
         barrierDismissible: false,
         useSafeArea: true,
-        barrierColor: ColorResource.darkBlack.withOpacity(0.7),
+        barrierColor: ColorResource.color1a1a1a.withOpacity(0.7),
         builder: (BuildContext context) {
           return WillPopScope(
             onWillPop: () async => false,
@@ -17,8 +17,8 @@ class AppProgress {
                 child: SizedBox(
               child: LoadingAnimationWidget.discreteCircle(
                 color: Colors.blue,
-                size: 20,
-                secondRingColor: ColorResource.mediumBlue,
+                size: 50,
+                secondRingColor: ColorResource.color1fabf1,
                 
               ),
             )),

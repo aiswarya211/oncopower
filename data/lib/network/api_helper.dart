@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:data/network/envm_mode.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:data/network/preference_helper.dart';
 import 'package:dio/dio.dart';
@@ -17,6 +18,7 @@ class ApiHelper {
     dio.options.validateStatus = (status) => status! <= 400;
     dio.transformer = JsonTransformer();
     _setupAuthInterceptor();
+    _setupLogInterceptor();
   }
 
   void _setupAuthInterceptor() {
@@ -25,6 +27,7 @@ class ApiHelper {
         onRequest: (options, handler) async {
           final Either<LocalError, String?> token =
               await PreferenceHelper.getToken();
+          
           if (token is Right<LocalError, String?>) {
             if (token.value != null) {
               options.headers[HttpHeaders.authorizationHeader] =
@@ -35,6 +38,12 @@ class ApiHelper {
         },
       ),
     );
+  }
+
+  void _setupLogInterceptor() {
+    if (ENVMode.isInDevMode) {
+      dio.interceptors.add(LogInterceptor(responseBody: true));
+    }
   }
 }
 

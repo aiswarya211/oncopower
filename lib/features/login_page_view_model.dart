@@ -1,6 +1,8 @@
 // ignore_for_file: unused_field
 
+import 'package:dartz/dartz.dart';
 import 'package:data/network/preference_helper.dart';
+import 'package:domain/error/local_error.dart';
 import 'package:domain/usecase/login/login_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:oncopower/base/base_page_view_model.dart';
@@ -46,10 +48,13 @@ class LoginPageViewModel extends BasePageViewModel with LoginViewModelStreams {
         }
 
         if (event.status == Status.success) {
-          await PreferenceHelper.saveToken(event.data!.token);
-          await PreferenceHelper.saveUser(event.data!.user);
+          await PreferenceHelper.saveToken(event.data!.loginData?.token);
+          await PreferenceHelper.saveUser(event.data!.loginData?.user);
+          _loginResponse.add(Resource.success(data: true));
         }
-        print(['hiii',event.data!.token]);
+        final Either<LocalError, String?> token =
+            await PreferenceHelper.getToken();
+        print([token, 'lop']);
       });
     });
   }
@@ -57,7 +62,6 @@ class LoginPageViewModel extends BasePageViewModel with LoginViewModelStreams {
   void loginOnTap() {
     _loginRequest
         .add(LoginUseCaseParams(emailController.text, passwordController.text));
-        
   }
 
   void passwordVisibleChange() {
@@ -68,7 +72,7 @@ class LoginPageViewModel extends BasePageViewModel with LoginViewModelStreams {
       eyeColor = ColorResource.hashgray;
     } else {
       trailingImage = ImageResource.onVisionIcon;
-      eyeColor = ColorResource.mediumBlue;
+      eyeColor = ColorResource.color1fabf1;
     }
   }
 }

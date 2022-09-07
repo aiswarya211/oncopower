@@ -6,6 +6,18 @@ part of 'user_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+LoginData _$LoginDataFromJson(Map<String, dynamic> json) => LoginData(
+      token: json['token'] as String?,
+      user: json['user'] == null
+          ? null
+          : UserEntity.fromJson(json['user'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$LoginDataToJson(LoginData instance) => <String, dynamic>{
+      'token': instance.token,
+      'user': instance.user,
+    };
+
 UserEntity _$UserEntityFromJson(Map<String, dynamic> json) => UserEntity(
       email: json['email'] as String?,
       firstName: json['first_name'] as String?,

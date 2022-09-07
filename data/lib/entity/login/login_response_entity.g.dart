@@ -10,10 +10,9 @@ LoginResponseEntity _$LoginResponseEntityFromJson(Map<String, dynamic> json) =>
     LoginResponseEntity(
       json['message'] as String?,
       json['error'] as String?,
-      json['token'] as String?,
-      json['user'] == null
+      json['loginData'] == null
           ? null
-          : UserEntity.fromJson(json['user'] as Map<String, dynamic>),
+          : LoginData.fromJson(json['loginData'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$LoginResponseEntityToJson(
@@ -21,6 +20,5 @@ Map<String, dynamic> _$LoginResponseEntityToJson(
     <String, dynamic>{
       'message': instance.message,
       'error': instance.error,
-      'token': instance.token,
-      'user': instance.user,
+      'loginData': instance.loginData,
     };
