@@ -1,5 +1,7 @@
 import 'package:data/entity/login/login_response_entity.dart';
+import 'package:data/entity/register/register_response_entity.dart';
 import 'package:data/entity/request/login_request.dart';
+import 'package:data/entity/request/register_request.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -14,7 +16,8 @@ abstract class ApiService {
   @POST("/login")
   Future<HttpResponse<LoginResponseEntity>> login(
       @Body() LoginRequest loginRequest);
-    
 
-      
+  @POST("/register")
+  Future<HttpResponse<RegisterResponseEntity>> register(
+      @Body() RegisterRequest registerRequest);
 }

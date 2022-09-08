@@ -22,10 +22,18 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "AcceptTermsAndCondition":
+            MessageLookupByLibrary.simpleMessage("Accept Terms and conditions"),
+        "alreadyHaveAccText":
+            MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "appName": MessageLookupByLibrary.simpleMessage("oncopower"),
         "checkYourInternetConnection": MessageLookupByLibrary.simpleMessage(
             "Please check your internet connection"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "emailAddresshintText":
+            MessageLookupByLibrary.simpleMessage("Enter email address"),
+        "emailAddresslabelText":
+            MessageLookupByLibrary.simpleMessage("Email Address *"),
         "emptyEmailMessage":
             MessageLookupByLibrary.simpleMessage("Email can\'t be empty"),
         "enterConfirmPassword": MessageLookupByLibrary.simpleMessage(
@@ -35,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterValidEmail":
             MessageLookupByLibrary.simpleMessage("Please enter a valid email"),
         "error": MessageLookupByLibrary.simpleMessage("Error"),
+        "firstNameText": MessageLookupByLibrary.simpleMessage("First Name *"),
         "forbidden": MessageLookupByLibrary.simpleMessage("404 Forbidden"),
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("Forget password?"),
@@ -46,11 +55,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "hintPassword": MessageLookupByLibrary.simpleMessage("Enter Password"),
         "lableEmailId": MessageLookupByLibrary.simpleMessage("Email ID"),
         "lablePassword": MessageLookupByLibrary.simpleMessage("Password"),
+        "lastNameText": MessageLookupByLibrary.simpleMessage("Last Name *"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "methodNotAllowed":
             MessageLookupByLibrary.simpleMessage("405 Method Not Allowed"),
         "oncopower": MessageLookupByLibrary.simpleMessage("oncopower"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "passwordLabelText": MessageLookupByLibrary.simpleMessage("Password *"),
+        "passwordhintText":
+            MessageLookupByLibrary.simpleMessage("Create password"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "serverBroken":
             MessageLookupByLibrary.simpleMessage("500 Server Broken"),

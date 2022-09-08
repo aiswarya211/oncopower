@@ -319,6 +319,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Email Address *`
+  String get emailAddresslabelText {
+    return Intl.message(
+      'Email Address *',
+      name: 'emailAddresslabelText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password *`
+  String get passwordLabelText {
+    return Intl.message(
+      'Password *',
+      name: 'passwordLabelText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `First Name *`
+  String get firstNameText {
+    return Intl.message(
+      'First Name *',
+      name: 'firstNameText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last Name *`
+  String get lastNameText {
+    return Intl.message(
+      'Last Name *',
+      name: 'lastNameText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter email address`
+  String get emailAddresshintText {
+    return Intl.message(
+      'Enter email address',
+      name: 'emailAddresshintText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create password`
+  String get passwordhintText {
+    return Intl.message(
+      'Create password',
+      name: 'passwordhintText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accept Terms and conditions`
+  String get AcceptTermsAndCondition {
+    return Intl.message(
+      'Accept Terms and conditions',
+      name: 'AcceptTermsAndCondition',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Already have an account?`
+  String get alreadyHaveAccText {
+    return Intl.message(
+      'Already have an account?',
+      name: 'alreadyHaveAccText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
