@@ -44,8 +44,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Don\'t have an account? "),
         "hintEmailId": MessageLookupByLibrary.simpleMessage("Enter email ID"),
         "hintPassword": MessageLookupByLibrary.simpleMessage("Enter Password"),
-        "invalidCredentials":
-            MessageLookupByLibrary.simpleMessage("invalid Credentials"),
         "lableEmailId": MessageLookupByLibrary.simpleMessage("Email ID"),
         "lablePassword": MessageLookupByLibrary.simpleMessage("Password"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),

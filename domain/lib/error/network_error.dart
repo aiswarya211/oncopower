@@ -1,7 +1,7 @@
 import 'package:domain/constant/domain_enums.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/base_error.dart';
-import 'package:domain/model/error_model.dart';
+import 'package:domain/model/error_info.dart';
 
 class NetworkError extends BaseError {
   NetworkError(
@@ -41,8 +41,10 @@ class NetworkError extends BaseError {
       case "405":
         return AppError(
             cause: cause, error: error, type: ErrorType.methodNotAllowed);
+
       case "422":
-      return AppError(cause: cause, error: error, type: ErrorType.ioException);
+      return AppError(cause: cause, error: error, type: ErrorType.unProcessableEntity);
+
       case "429":
         return AppError(
             cause: cause, error: error, type: ErrorType.tooManyRequest);

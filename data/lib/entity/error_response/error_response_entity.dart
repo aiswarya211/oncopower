@@ -5,8 +5,8 @@ part 'error_response_entity.g.dart';
 class ErrorResponseEntity {
   @JsonKey(name: "code")
   final int? code;
-  @JsonKey(name: "error")
-  final String? message;
+  @JsonKey(name: "error_message")
+  final dynamic message;
   @JsonKey(name: "token")
   final String? token;
   @JsonKey(name: "content")
@@ -15,8 +15,6 @@ class ErrorResponseEntity {
   final String? exceptionMessage;
   @JsonKey(name: "id")
   final String? id;
-  @JsonKey(name: "error_message")
-  final String? errorMessage; 
 
   ErrorResponseEntity(
       {this.code,
@@ -24,7 +22,7 @@ class ErrorResponseEntity {
       this.exceptionMessage,
       this.message,
       this.token,
-      this.id,this.errorMessage});
+      this.id});
 
   factory ErrorResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$ErrorResponseEntityFromJson(json);

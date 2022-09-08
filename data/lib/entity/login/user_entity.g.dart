@@ -11,11 +11,13 @@ LoginData _$LoginDataFromJson(Map<String, dynamic> json) => LoginData(
       user: json['user'] == null
           ? null
           : UserEntity.fromJson(json['user'] as Map<String, dynamic>),
+      message: json['message'] as String?,
     );
 
 Map<String, dynamic> _$LoginDataToJson(LoginData instance) => <String, dynamic>{
       'token': instance.token,
       'user': instance.user,
+      'message': instance.message,
     };
 
 UserEntity _$UserEntityFromJson(Map<String, dynamic> json) => UserEntity(

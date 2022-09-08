@@ -18,7 +18,6 @@
   "checkYourInternetConnection": "Please check your internet connection",
   "submit": "Submit",
   "unauthenticated": "invalid Credentials",
-  "invalidCredentials":"invalid Credentials",
   "forgetPassword": "Forget password?",
   "oncopower": "oncopower",
   "hintEmailId":"Enter email ID",

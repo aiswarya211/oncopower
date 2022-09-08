@@ -28,6 +28,8 @@ class ErrorParser {
         return localisedHelper.serverBroken;
       case ErrorType.unAuthorized:
         return localisedHelper.unauthenticated;
+      case ErrorType.unProcessableEntity:
+        return error!.error.message;
       case ErrorType.methodNotAllowed:
         return localisedHelper.methodNotAllowed;
       default:

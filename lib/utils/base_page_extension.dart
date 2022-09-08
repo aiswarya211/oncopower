@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oncopower/base/base_page.dart';
 import 'package:oncopower/utils/app_utils.dart';
+import 'package:oncopower/utils/color_resources.dart';
 
 extension PageExtensions on BaseStatefulPage {
   showShortToast(String message) {
@@ -19,6 +20,6 @@ extension PageExtensions on BaseStatefulPage {
 
   showErrorMessage(String title) {
     AppUtils.showToast(title,
-        color: Colors.red,);
+        color: Colors.red,webColor: ColorResource.colorHexRed);
   }
 }

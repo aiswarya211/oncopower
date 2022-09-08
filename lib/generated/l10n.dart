@@ -240,16 +240,6 @@ class S {
     );
   }
 
-  /// `invalid Credentials`
-  String get invalidCredentials {
-    return Intl.message(
-      'invalid Credentials',
-      name: 'invalidCredentials',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Forget password?`
   String get forgetPassword {
     return Intl.message(

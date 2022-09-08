@@ -1,6 +1,6 @@
 
 import 'package:domain/constant/domain_enums.dart';
-import 'package:domain/model/error_model.dart';
+import 'package:domain/model/error_info.dart';
 
 class AppError implements Exception {
   ErrorType type;

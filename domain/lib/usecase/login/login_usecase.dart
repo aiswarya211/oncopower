@@ -3,7 +3,7 @@ import 'package:data/entity/login/login_response_entity.dart';
 import 'package:domain/constant/domain_enums.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/base_error.dart';
-import 'package:domain/model/error_model.dart';
+import 'package:domain/model/error_info.dart';
 import 'package:domain/repository/login_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';

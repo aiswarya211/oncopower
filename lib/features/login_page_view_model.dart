@@ -48,9 +48,10 @@ class LoginPageViewModel extends BasePageViewModel with LoginViewModelStreams {
         }
 
         if (event.status == Status.success) {
+          showToastWithString(event.data!.message!);
           await PreferenceHelper.saveToken(event.data!.loginData?.token);
           await PreferenceHelper.saveUser(event.data!.loginData?.user);
-          _loginResponse.add(Resource.success(data: true));
+          // _loginResponse.add(Resource.success(data: true));
         }
         final Either<LocalError, String?> token =
             await PreferenceHelper.getToken();

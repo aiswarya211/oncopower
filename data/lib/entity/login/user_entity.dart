@@ -6,8 +6,9 @@ class LoginData {
   @JsonKey(name: 'token')
   final String? token;
   final UserEntity? user;
+  final String? message;
 
-  LoginData({this.token, this.user});
+  LoginData({this.token, this.user,this.message});
 
   factory LoginData.fromJson(Map<String, dynamic> json) => _$LoginDataFromJson(json);
   Map<String, dynamic> toJson() => _$LoginDataToJson(this);

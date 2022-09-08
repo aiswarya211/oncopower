@@ -6,6 +6,7 @@ part 'login_response_entity.g.dart';
 
 @JsonSerializable()
 class LoginResponseEntity extends BaseEntity {
+   @JsonKey(name: 'data')
   LoginData? loginData;
 
   LoginResponseEntity(String? message, String? error, this.loginData)
