@@ -1,6 +1,8 @@
 // ignore_for_file: unused_field
 
+import 'package:beamer/beamer.dart';
 import 'package:data/network/preference_helper.dart';
+import 'package:domain/usecase/feed/feed_usecase.dart';
 import 'package:domain/usecase/login/login_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:oncopower/base/base_page_view_model.dart';
@@ -20,6 +22,8 @@ class LoginPageViewModel extends BasePageViewModel with LoginViewModelStreams {
   Stream<Resource<bool>> get isLoggedIn => _loginResponse.stream;
 
   Stream<Resource<bool>> get passwordObscured => _passwordObscure.stream;
+
+  Stream<bool> get loginSucessStream => _loginSucess.stream;
 
   String trailingImage = ImageResource.onVisionIcon;
 
@@ -49,6 +53,7 @@ class LoginPageViewModel extends BasePageViewModel with LoginViewModelStreams {
           showToastWithString(event.data!.message!);
           await PreferenceHelper.saveToken(event.data!.loginData?.token);
           await PreferenceHelper.saveUser(event.data!.loginData?.user);
+           _getFeedRequest.add(GetFeedUseCaseParams());
           // _loginResponse.add(Resource.success(data: true));
         }
       });
@@ -76,11 +81,13 @@ class LoginPageViewModel extends BasePageViewModel with LoginViewModelStreams {
 mixin LoginViewModelStreams {
   // Request Streams
   final _loginRequest = AppStream<LoginUseCaseParams>();
-
+  final _getFeedRequest = AppStream<GetFeedUseCaseParams>();
   // Response Streams
   final _loginResponse = AppStream<Resource<bool>>(
       preserveState: true, initialValue: Resource.success(data: false));
 
   final _passwordObscure =
       AppStream<Resource<bool>>(initialValue: Resource.success(data: true));
+
+  final _loginSucess = AppStream<bool>(initialValue: false);
 }

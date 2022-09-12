@@ -8,6 +8,7 @@ import 'package:data/entity/login/login_response_entity.dart';
 import 'package:dartz/dartz.dart';
 import 'package:domain/repository/login_repository.dart';
 
+
 class LoginRepositoryImpl extends LoginRepository {
   final LoginRemoteDS _remoteDS;
   LoginRepositoryImpl(this._remoteDS);

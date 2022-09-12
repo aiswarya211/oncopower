@@ -1,3 +1,4 @@
+import 'package:data/entity/feed/feed_response_entity.dart';
 import 'package:data/entity/login/login_response_entity.dart';
 import 'package:data/entity/register/register_response_entity.dart';
 import 'package:data/entity/request/login_request.dart';
@@ -20,4 +21,7 @@ abstract class ApiService {
   @POST("/register")
   Future<HttpResponse<RegisterResponseEntity>> register(
       @Body() RegisterRequest registerRequest);
+
+  @GET("/user/get-feed?limit=40&listing_type=all_feed")
+  Future<HttpResponse<FeedResponseEntity>> getFeed();
 }

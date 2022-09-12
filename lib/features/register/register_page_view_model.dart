@@ -14,8 +14,9 @@ class RegisterPageViewModel extends BasePageViewModel
   TextEditingController passwordController = TextEditingController();
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
-  final String source = "oncopower";
-  final String userType = "patient";
+
+  final source = "oncopower";
+  final userType = "patient";
 
   Stream<Resource<bool>> get isLoggedIn => _registerResponse.stream;
 
@@ -25,20 +26,20 @@ class RegisterPageViewModel extends BasePageViewModel
 
   Color eyeColor = ColorResource.hashgray;
 
-  final RegisterUseCase _loginUseCase;
+  final RegisterUseCase _registerUseCase;
 
   Stream<bool> get registerSucessStream => _registerSucess.stream;
 
   RegisterPageViewModel(
-    this._loginUseCase,
+    this._registerUseCase,
   ) {
-    listenLoginRequest();
+    listenRegisterRequest();
   }
 
-  void listenLoginRequest() {
+  void listenRegisterRequest() {
     _registerRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _loginUseCase.execute(params: value))
+              createCall: () => _registerUseCase.execute(params: value))
           .asFlow()
           .listen((event) async {
         updateLoader();
@@ -49,6 +50,7 @@ class RegisterPageViewModel extends BasePageViewModel
 
         if (event.status == Status.success) {
           showToastWithString(event.data!.message!);
+         
         }
       });
     });

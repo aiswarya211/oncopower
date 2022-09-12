@@ -30,41 +30,41 @@ class RegisterUseCase extends BaseUseCase<BaseError, RegisterUseCaseParams,
 }
 
 class RegisterUseCaseParams extends Params {
-  final String emailId;
   final String firstName;
   final String lastName;
+  final String emailId;
   final String password;
   final String source;
   final String userType;
 
-  RegisterUseCaseParams(this.emailId, this.password, this.firstName,
-      this.lastName, this.source, this.userType);
+  RegisterUseCaseParams(this.firstName, this.lastName, this.emailId,
+      this.password, this.source, this.userType);
   @override
   Either<AppError, bool> verify() {
     ValidationState state;
 
-    state = Validator.validate(firstName, rules: ['required']);
+    state = Validator.validate(firstName, rules: ['firstName']);
     if (state.status) {
       return Left(
         AppError(
-          error: ErrorInfo(message: 'FirstName ${state.error}'),
+          error: ErrorInfo(message: 'firstName ${state.error}'),
           type: ErrorType.ui,
           cause: Exception(),
         ),
       );
     }
 
-    state = Validator.validate(lastName, rules: ['required']);
+    state = Validator.validate(lastName, rules: ['lastName']);
     if (state.status) {
       return Left(
         AppError(
-          error: ErrorInfo(message: 'LastName ${state.error}'),
+          error: ErrorInfo(message: 'lastName ${state.error}'),
           type: ErrorType.ui,
           cause: Exception(),
         ),
       );
     }
-    state = Validator.validate(emailId, rules: ['required']);
+    state = Validator.validate(emailId, rules: ['email']);
     if (!state.status) {
       return Left(AppError(
           error: ErrorInfo(message: 'Email ${state.error}'),

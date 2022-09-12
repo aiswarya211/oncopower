@@ -1,6 +1,7 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:oncopower/di/app_modules.dart';
+import 'package:oncopower/features/feed/feed_page.dart';
 import 'package:oncopower/features/login/login_page.dart';
 import 'package:oncopower/features/register/register_page.dart';
 import 'package:oncopower/main/custom_transition_page.dart';
@@ -11,8 +12,11 @@ import 'package:oncopower/utils/image_resources.dart';
 
 class BeamerRoutes {
   static final routerDelegate = BeamerDelegate(
-    locationBuilder: BeamerLocationBuilder(
-        beamLocations: [LoginLocation(), RegisterLocation()]),
+    locationBuilder: BeamerLocationBuilder(beamLocations: [
+      LoginLocation(),
+      GetFeedLocation(),
+      RegisterLocation(),
+    ]),
     initialPath: "/login",
     notFoundPage: notFoundPage,
     guards: [
@@ -75,11 +79,17 @@ class LoginLocation extends BeamLocation<BeamState> {
         childWidget: const LoginPage(),
         pageTitle: "Login",
       ),
+      if (state.pathParameters['page'] == "feed_detail")
+        CustomTransitionPage(
+          key: ValueKey("${state.pathParameters['page']}-GetFeed"),
+          childWidget: const FeedPage(),
+          pageTitle: "Get Feed",
+        ),
     ];
   }
 
   @override
-  List<Pattern> get pathPatterns => ["/login"];
+  List<Pattern> get pathPatterns => ["/login/:page"];
 }
 
 class RegisterLocation extends BeamLocation<BeamState> {
@@ -96,4 +106,20 @@ class RegisterLocation extends BeamLocation<BeamState> {
 
   @override
   List<Pattern> get pathPatterns => ["/register"];
+}
+
+class GetFeedLocation extends BeamLocation<BeamState> {
+  @override
+  List<BeamPage> buildPages(BuildContext context, BeamState state) {
+    return [
+      CustomTransitionPage(
+        key: const ValueKey("GetFeed"),
+        childWidget: const FeedPage(),
+        pageTitle: "GetFeed",
+      ),
+    ];
+  }
+
+  @override
+  List<Pattern> get pathPatterns => ["/getFeed"];
 }

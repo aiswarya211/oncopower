@@ -27,7 +27,6 @@ class ApiHelper {
         onRequest: (options, handler) async {
           final Either<LocalError, String?> token =
               await PreferenceHelper.getToken();
-          
           if (token is Right<LocalError, String?>) {
             if (token.value != null) {
               options.headers[HttpHeaders.authorizationHeader] =

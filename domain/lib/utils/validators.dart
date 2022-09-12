@@ -18,7 +18,25 @@ class Validator {
           return ValidationState(error: " is required");
         }
         if (!_emailRegExp.hasMatch(input)) {
-          return ValidationState(error: " format is invalid");
+          return ValidationState(error: "format is invalid");
+        }
+      }
+
+      if (rule == "firstName") {
+        if (input == null || input == "") {
+          return ValidationState(error: " is required");
+        }
+        if (!_emailRegExp.hasMatch(input)) {
+          return ValidationState(error: "format is invalid");
+        }
+      }
+
+      if (rule == "lastName") {
+        if (input == null || input == "") {
+          return ValidationState(error: " is required");
+        }
+        if (!_emailRegExp.hasMatch(input)) {
+          return ValidationState(error: "format is invalid");
         }
       }
 

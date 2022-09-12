@@ -65,6 +65,15 @@ class _WebLayout extends StatelessWidget {
       ),
     );
   }
+
+  // void listenLoginSuccess(BuildContext context) {
+  //   final viewModel = context.read(loginModuleProvider);
+  //   viewModel.loginSucessStream.listen((event) {
+  //     if (event) {
+  //       context.beamToNamed("/getFeed");
+  //     }
+  //   });
+  // }
 }
 
 class _MobileLayout extends StatelessWidget {
@@ -88,6 +97,15 @@ class _MobileLayout extends StatelessWidget {
           ),
         ));
   }
+
+  // void listenLoginSuccess(BuildContext context) {
+  //   final viewModel = context.read(loginModuleProvider);
+  //   viewModel.loginSucessStream.listen((event) {
+  //     if (event) {
+  //       context.beamToNamed("/getFeed");
+  //     }
+  //   });
+  // }
 }
 
 class _RightPanel extends StatelessWidget {
@@ -200,7 +218,10 @@ class _RightPanel extends StatelessWidget {
                   alignment: Alignment.center,
                   child: CustomButton(
                     text: S.of(context).login,
-                    onPressed: viewModel.loginOnTap,
+                    onPressed: () {
+                      viewModel.loginOnTap();
+                     
+                    },
                     borderRadius: 50,
                   ),
                 ),
