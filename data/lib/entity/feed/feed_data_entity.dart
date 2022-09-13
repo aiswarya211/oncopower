@@ -1,5 +1,8 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:data/entity/login/user_entity.dart';
-import 'package:data/helper/base_equatable.dart';
+import 'package:domain/model/post/feed_post.dart';
+import 'package:domain/utils/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'feed_data_entity.g.dart';
 
@@ -28,14 +31,14 @@ class FeedList {
   @JsonKey(name: 'feed_message')
   FeedMessage? feedMessage;
   @JsonKey(name: 'post')
-  FeedPost? feedPost;
+  FeedPostEntity? feedPostEntity;
 
   FeedList(
       {this.id,
       this.createdAt,
       this.updatedAt,
       this.feedMessage,
-      this.feedPost,
+      this.feedPostEntity,
       this.ownerId,
       this.userId});
 
@@ -74,7 +77,8 @@ class FeedMessage {
 }
 
 @JsonSerializable()
-class FeedPost extends BaseEquatable {
+class FeedPostEntity
+    implements BaseLayerDataTransformer<FeedPostEntity, FeedPost> {
   int? id;
   @JsonKey(name: 'user_id')
   int? userId;
@@ -100,9 +104,9 @@ class FeedPost extends BaseEquatable {
   bool? islike;
   @JsonKey(name: 'comments')
   // List<CommentList>? commentList;
-  List<Media>? media;
+  List<MediaEntity>? media;
 
-  FeedPost(
+  FeedPostEntity(
       {this.description,
       this.likeCount,
       this.shareCount,
@@ -114,23 +118,55 @@ class FeedPost extends BaseEquatable {
       this.media,
       this.postUrl,
       this.islike,
-      
       this.id});
-  factory FeedPost.fromJson(Map<String, dynamic> json) =>
-      _$FeedPostFromJson(json);
-  Map<String, dynamic> toJson() => _$FeedPostToJson(this);
+  factory FeedPostEntity.fromJson(Map<String, dynamic> json) =>
+      _$FeedPostEntityFromJson(json);
+  Map<String, dynamic> toJson() => _$FeedPostEntityToJson(this);
 
   @override
-  List<Object?> get props => [id];
+  FeedPostEntity restore(FeedPost? data) {
+    throw UnimplementedError();
+  }
+
+  @override
+  FeedPost transform() {
+    return FeedPost(
+        id: id,
+        description: description,
+        likeCount: likeCount,
+        shareCount: shareCount,
+        commentCount: commentCount,
+        totalCommentCount: totalCommentCount,
+        createdAt: createdAt,
+        updatedAt: updatedAt,
+        user: user,
+        media: media?.map((e) => e.transform()).toList(),
+        postUrl: postUrl,
+        islike: islike);
+  }
 }
 
 @JsonSerializable()
-class Media {
+class MediaEntity implements BaseLayerDataTransformer<MediaEntity, Media> {
   int? id;
   @JsonKey(name: 'relative_path')
   String? image;
 
-  Media({this.id, this.image});
-  factory Media.fromJson(Map<String, dynamic> json) => _$MediaFromJson(json);
-  Map<String, dynamic> toJson() => _$MediaToJson(this);
+  MediaEntity({this.id, this.image});
+  factory MediaEntity.fromJson(Map<String, dynamic> json) =>
+      _$MediaEntityFromJson(json);
+  Map<String, dynamic> toJson() => _$MediaEntityToJson(this);
+
+  @override
+  MediaEntity restore(Media? data) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Media transform() {
+    return Media(
+      id: id,
+      image: image,
+    );
+  }
 }

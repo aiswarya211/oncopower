@@ -31,7 +31,7 @@ class BeamerRoutes {
       ),
       BeamGuard(
         pathPatterns: ["/login"],
-        onCheckFailed: (context, location) {},
+        beamToNamed: (c, a) => "/feed",
         check: (context, location) {
           final viewModel = context.read(appViewModelProvider);
           return viewModel.authState != AuthenticationStatus.authenticated;
@@ -79,17 +79,11 @@ class LoginLocation extends BeamLocation<BeamState> {
         childWidget: const LoginPage(),
         pageTitle: "Login",
       ),
-      if (state.pathParameters['page'] == "feed_detail")
-        CustomTransitionPage(
-          key: ValueKey("${state.pathParameters['page']}-GetFeed"),
-          childWidget: const FeedPage(),
-          pageTitle: "Get Feed",
-        ),
     ];
   }
 
   @override
-  List<Pattern> get pathPatterns => ["/login/:page"];
+  List<Pattern> get pathPatterns => ["/login"];
 }
 
 class RegisterLocation extends BeamLocation<BeamState> {
@@ -101,6 +95,7 @@ class RegisterLocation extends BeamLocation<BeamState> {
         childWidget: const RegisterPage(),
         pageTitle: "Register",
       ),
+      
     ];
   }
 
@@ -115,11 +110,11 @@ class GetFeedLocation extends BeamLocation<BeamState> {
       CustomTransitionPage(
         key: const ValueKey("GetFeed"),
         childWidget: const FeedPage(),
-        pageTitle: "GetFeed",
+        pageTitle: "Feed",
       ),
     ];
   }
 
   @override
-  List<Pattern> get pathPatterns => ["/getFeed"];
+  List<Pattern> get pathPatterns => ["/feed"];
 }

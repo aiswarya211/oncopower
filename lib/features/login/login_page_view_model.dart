@@ -1,8 +1,6 @@
 // ignore_for_file: unused_field
 
-import 'package:beamer/beamer.dart';
 import 'package:data/network/preference_helper.dart';
-import 'package:domain/usecase/feed/feed_usecase.dart';
 import 'package:domain/usecase/login/login_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:oncopower/base/base_page_view_model.dart';
@@ -38,26 +36,29 @@ class LoginPageViewModel extends BasePageViewModel with LoginViewModelStreams {
   }
 
   void listenLoginRequest() {
-    _loginRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _loginUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) async {
-        updateLoader();
-        if (event.status == Status.error) {
-          showToastWithError(event.appError!);
-          showErrorState();
-        }
+    _loginRequest.listen(
+      (value) {
+        RequestManager(value,
+                createCall: () => _loginUseCase.execute(params: value))
+            .asFlow()
+            .listen(
+          (event) async {
+            updateLoader();
+            if (event.status == Status.error) {
+              showToastWithError(event.appError!);
+              showErrorState();
+            }
 
-        if (event.status == Status.success) {
-          showToastWithString(event.data!.message!);
-          await PreferenceHelper.saveToken(event.data!.loginData?.token);
-          await PreferenceHelper.saveUser(event.data!.loginData?.user);
-           _getFeedRequest.add(GetFeedUseCaseParams());
-          // _loginResponse.add(Resource.success(data: true));
-        }
-      });
-    });
+            if (event.status == Status.success) {
+              showSuccessToast(event.data!.message!);
+              await PreferenceHelper.saveToken(event.data!.loginData?.token);
+              await PreferenceHelper.saveUser(event.data!.loginData?.user);
+              _loginResponse.add(Resource.success(data: true));
+            }
+          },
+        );
+      },
+    );
   }
 
   void loginOnTap() {
@@ -81,7 +82,7 @@ class LoginPageViewModel extends BasePageViewModel with LoginViewModelStreams {
 mixin LoginViewModelStreams {
   // Request Streams
   final _loginRequest = AppStream<LoginUseCaseParams>();
-  final _getFeedRequest = AppStream<GetFeedUseCaseParams>();
+
   // Response Streams
   final _loginResponse = AppStream<Resource<bool>>(
       preserveState: true, initialValue: Resource.success(data: false));

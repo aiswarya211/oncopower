@@ -22,7 +22,7 @@ class AppUtils {
         // textColor: Colors.white,
         webBgColor: webColor,
         webShowClose: true,
-        timeInSecForIosWeb: 3,
+        timeInSecForIosWeb: 2,
         webPosition: "center",
         fontSize: 14.0);
   }

@@ -42,38 +42,22 @@ class _WebLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.only(top: 100, bottom: 100),
-        constraints: const BoxConstraints(maxWidth: 500, maxHeight: 750),
-        decoration: const BoxDecoration(
-          color: ColorResource.color1fabf1,
-          shape: BoxShape.rectangle,
-          borderRadius: BorderRadius.all(
-            Radius.circular(12.0),
-          ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
-            _RightPanel(),
-          ],
-        ),
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      decoration: const BoxDecoration(
+        color: ColorResource.color1fabf1,
+        shape: BoxShape.rectangle,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: const [
+          _LoginPage(),
+        ],
       ),
     );
   }
-
-  // void listenLoginSuccess(BuildContext context) {
-  //   final viewModel = context.read(loginModuleProvider);
-  //   viewModel.loginSucessStream.listen((event) {
-  //     if (event) {
-  //       context.beamToNamed("/getFeed");
-  //     }
-  //   });
-  // }
 }
 
 class _MobileLayout extends StatelessWidget {
@@ -92,24 +76,15 @@ class _MobileLayout extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: const [
               SizedBox(height: 100),
-              _RightPanel(),
+              _LoginPage(),
             ],
           ),
         ));
   }
-
-  // void listenLoginSuccess(BuildContext context) {
-  //   final viewModel = context.read(loginModuleProvider);
-  //   viewModel.loginSucessStream.listen((event) {
-  //     if (event) {
-  //       context.beamToNamed("/getFeed");
-  //     }
-  //   });
-  // }
 }
 
-class _RightPanel extends StatelessWidget {
-  const _RightPanel({Key? key}) : super(key: key);
+class _LoginPage extends StatelessWidget {
+  const _LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +105,8 @@ class _RightPanel extends StatelessWidget {
           height: 30,
         ),
         Container(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12.0),
+          constraints: const BoxConstraints(maxWidth: 500),
+          padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 12),
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
@@ -220,7 +196,6 @@ class _RightPanel extends StatelessWidget {
                     text: S.of(context).login,
                     onPressed: () {
                       viewModel.loginOnTap();
-                     
                     },
                     borderRadius: 50,
                   ),

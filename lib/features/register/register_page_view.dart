@@ -44,29 +44,19 @@ class _WebLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     listenRegisterSuccess(context);
-    return SingleChildScrollView(
-      controller: ScrollController(),
-      child: Center(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.only(bottom: 50,top: 100),
-          constraints: const BoxConstraints(maxWidth: 500, maxHeight: 850,minHeight: 300),
-          decoration: const BoxDecoration(
-            color: ColorResource.color1fabf1,
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.all(
-              Radius.circular(12.0),
-            ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: const [
-              _RightPanel(),
-            ],
-          ),
-        ),
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      decoration: const BoxDecoration(
+        color: ColorResource.color1fabf1,
+        shape: BoxShape.rectangle,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: const [
+          _RegisterPage(),
+        ],
       ),
     );
   }
@@ -98,7 +88,7 @@ class _MobileLayout extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: const [
               SizedBox(height: 100),
-              _RightPanel(),
+              _RegisterPage(),
             ],
           ),
         ));
@@ -114,8 +104,8 @@ class _MobileLayout extends StatelessWidget {
   }
 }
 
-class _RightPanel extends StatelessWidget {
-  const _RightPanel({Key? key}) : super(key: key);
+class _RegisterPage extends StatelessWidget {
+  const _RegisterPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +126,8 @@ class _RightPanel extends StatelessWidget {
           height: 30,
         ),
         Container(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12.0),
+          constraints: const BoxConstraints(maxWidth: 500),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),

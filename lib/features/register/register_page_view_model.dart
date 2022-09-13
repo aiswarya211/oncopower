@@ -34,6 +34,21 @@ class RegisterPageViewModel extends BasePageViewModel
     this._registerUseCase,
   ) {
     listenRegisterRequest();
+    init();
+    resetAllPresetValues();
+  }
+
+  Future<void> init() async {
+    resetAllPresetValues(isRemoveDatas: true);
+  }
+
+  void resetAllPresetValues({bool isRemoveDatas = false}) {
+    if (isRemoveDatas) {
+      emailController.clear();
+      passwordController.clear();
+      firstNameController.clear();
+      lastNameController.clear();
+    }
   }
 
   void listenRegisterRequest() {
@@ -49,8 +64,9 @@ class RegisterPageViewModel extends BasePageViewModel
         }
 
         if (event.status == Status.success) {
-          showToastWithString(event.data!.message!);
-         
+          showSuccessToast(event.data!.message!);
+          _registerResponse.add(Resource.success(data: true));
+          resetAllPresetValues();
         }
       });
     });

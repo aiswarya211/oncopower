@@ -18,10 +18,10 @@ class FeedPageViewModel extends BasePageViewModel with FeedViewModelStreams {
   FeedPageViewModel(
     this._feedUseCase,
   ) {
-    listenRegisterRequest();
+    initial();
   }
 
-  void listenRegisterRequest() {
+  void initial() {
     _getFeedRequest.listen(
       (value) {
         RequestManager(value,
@@ -36,7 +36,7 @@ class FeedPageViewModel extends BasePageViewModel with FeedViewModelStreams {
             }
 
             if (event.status == Status.success) {
-              
+              feedList.addAll(event.data!.feed!.feedList);
             }
           },
         );

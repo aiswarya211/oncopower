@@ -23,9 +23,9 @@ FeedList _$FeedListFromJson(Map<String, dynamic> json) => FeedList(
       feedMessage: json['feed_message'] == null
           ? null
           : FeedMessage.fromJson(json['feed_message'] as Map<String, dynamic>),
-      feedPost: json['post'] == null
+      feedPostEntity: json['post'] == null
           ? null
-          : FeedPost.fromJson(json['post'] as Map<String, dynamic>),
+          : FeedPostEntity.fromJson(json['post'] as Map<String, dynamic>),
       ownerId: json['owner_id'] as int?,
       userId: json['user_id'] as int?,
     );
@@ -37,7 +37,7 @@ Map<String, dynamic> _$FeedListToJson(FeedList instance) => <String, dynamic>{
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
       'feed_message': instance.feedMessage,
-      'post': instance.feedPost,
+      'post': instance.feedPostEntity,
     };
 
 FeedMessage _$FeedMessageFromJson(Map<String, dynamic> json) => FeedMessage(
@@ -59,7 +59,8 @@ Map<String, dynamic> _$FeedMessageToJson(FeedMessage instance) =>
       'responder_last_name': instance.responderLastName,
     };
 
-FeedPost _$FeedPostFromJson(Map<String, dynamic> json) => FeedPost(
+FeedPostEntity _$FeedPostEntityFromJson(Map<String, dynamic> json) =>
+    FeedPostEntity(
       description: json['description'] as String?,
       likeCount: json['like_count'] as int?,
       shareCount: json['share_count'] as int?,
@@ -71,14 +72,15 @@ FeedPost _$FeedPostFromJson(Map<String, dynamic> json) => FeedPost(
           ? null
           : UserEntity.fromJson(json['user'] as Map<String, dynamic>),
       media: (json['comments'] as List<dynamic>?)
-          ?.map((e) => Media.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => MediaEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
       postUrl: json['dynamic_link'] as String?,
       islike: json['is_like'] as bool?,
       id: json['id'] as int?,
     )..userId = json['user_id'] as int?;
 
-Map<String, dynamic> _$FeedPostToJson(FeedPost instance) => <String, dynamic>{
+Map<String, dynamic> _$FeedPostEntityToJson(FeedPostEntity instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'user_id': instance.userId,
       'description': instance.description,
@@ -94,12 +96,13 @@ Map<String, dynamic> _$FeedPostToJson(FeedPost instance) => <String, dynamic>{
       'comments': instance.media,
     };
 
-Media _$MediaFromJson(Map<String, dynamic> json) => Media(
+MediaEntity _$MediaEntityFromJson(Map<String, dynamic> json) => MediaEntity(
       id: json['id'] as int?,
       image: json['relative_path'] as String?,
     );
 
-Map<String, dynamic> _$MediaToJson(Media instance) => <String, dynamic>{
+Map<String, dynamic> _$MediaEntityToJson(MediaEntity instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'relative_path': instance.image,
     };
