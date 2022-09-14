@@ -399,6 +399,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Search...`
+  String get searchText {
+    return Intl.message(
+      'Search...',
+      name: 'searchText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shares`
+  String get sharesText {
+    return Intl.message(
+      'Shares',
+      name: 'sharesText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Like`
+  String get likeText {
+    return Intl.message(
+      'Like',
+      name: 'likeText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Comment`
+  String get commentText {
+    return Intl.message(
+      'Comment',
+      name: 'commentText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Comments`
+  String get commentsText {
+    return Intl.message(
+      'Comments',
+      name: 'commentsText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share`
+  String get shareText {
+    return Intl.message(
+      'Share',
+      name: 'shareText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `See More`
+  String get seeMoreText {
+    return Intl.message(
+      'See More',
+      name: 'seeMoreText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `See Less`
+  String get seeLessText {
+    return Intl.message(
+      'See Less',
+      name: 'seeLessText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

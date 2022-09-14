@@ -33,6 +33,15 @@
   "emailAddresshintText":"Enter email address",
   "passwordhintText":"Create password",
    "AcceptTermsAndCondition":"Accept Terms and conditions",
-   "alreadyHaveAccText":"Already have an account?"
+   "alreadyHaveAccText":"Already have an account?",
+   "searchText":"Search...",
+   "sharesText":"Shares",
+   "likeText":"Like",
+   "commentText":"Comment",
+   "commentsText":"Comments",
+   "shareText":"Share",
+   "seeMoreText":"See More",
+   "seeLessText":"See Less"
+
 
 }

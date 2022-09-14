@@ -25,7 +25,7 @@ class LoginPageViewModel extends BasePageViewModel with LoginViewModelStreams {
 
   String trailingImage = ImageResource.onVisionIcon;
 
-  Color eyeColor = ColorResource.hashgray;
+  Color eyeColor = ColorResource.color82808e;
 
   final LoginUseCase _loginUseCase;
 
@@ -70,10 +70,10 @@ class LoginPageViewModel extends BasePageViewModel with LoginViewModelStreams {
     _passwordObscure
         .add(Resource.success(data: !_passwordObscure.value!.data!));
     if (_passwordObscure.value!.data!) {
-      trailingImage = ImageResource.onVisionIcon;
-      eyeColor = ColorResource.hashgray;
+    
+      eyeColor = ColorResource.color82808e;
     } else {
-      trailingImage = ImageResource.onVisionIcon;
+
       eyeColor = ColorResource.color1fabf1;
     }
   }

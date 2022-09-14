@@ -1,4 +1,6 @@
 import 'package:beamer/beamer.dart';
+import 'package:domain/bus/event_bus.dart';
+import 'package:domain/bus/un_authenticated.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -25,9 +27,9 @@ class MyApp extends ConsumerWidget {
           }
           isDoneInitialized = true;
         });
-        // // eventBus.on<UnAuthenticatedEvent>().listen((event) {
-        // //   model.logout();
-        // });
+        eventBus.on<UnAuthenticatedEvent>().listen((event) {
+          model.logout();
+        });
       },
       builder: (context, appModel, child) {
         return MaterialApp.router(

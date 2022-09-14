@@ -106,7 +106,7 @@ class _LoginPage extends StatelessWidget {
         ),
         Container(
           constraints: const BoxConstraints(maxWidth: 500),
-          padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
@@ -158,14 +158,13 @@ class _LoginPage extends StatelessWidget {
                             viewModel.passwordVisibleChange();
                           },
                           icon: Container(
-                              alignment: Alignment.center,
-                              margin: const EdgeInsets.only(right: 10),
-                              width: 15,
-                              height: 12,
-                              child: Image.asset(
-                                viewModel.trailingImage,
-                                color: ColorResource.color1a1a1a,
-                              )),
+                            alignment: Alignment.center,
+                            margin: const EdgeInsets.only(right: 10),
+                            width: 15,
+                            height: 12,
+                            child: Image.asset(viewModel.trailingImage,
+                                color: viewModel.eyeColor),
+                          ),
                         ),
                       );
                     }),

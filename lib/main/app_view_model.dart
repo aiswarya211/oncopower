@@ -100,7 +100,7 @@ class AppViewModel extends BaseViewModel with AppViewModelStreams {
   }
 
   Future<void> logout() async {
-    // await PreferenceHelper.clearStorage();
+    await PreferenceHelper.clearStorage();
     _authStateRequest.add(AuthenticationStatus.unAuthenticated);
   }
 

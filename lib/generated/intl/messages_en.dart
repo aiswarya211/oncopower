@@ -29,6 +29,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "appName": MessageLookupByLibrary.simpleMessage("oncopower"),
         "checkYourInternetConnection": MessageLookupByLibrary.simpleMessage(
             "Please check your internet connection"),
+        "commentText": MessageLookupByLibrary.simpleMessage("Comment"),
+        "commentsText": MessageLookupByLibrary.simpleMessage("Comments"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailAddresshintText":
             MessageLookupByLibrary.simpleMessage("Enter email address"),
@@ -56,6 +58,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lableEmailId": MessageLookupByLibrary.simpleMessage("Email ID"),
         "lablePassword": MessageLookupByLibrary.simpleMessage("Password"),
         "lastNameText": MessageLookupByLibrary.simpleMessage("Last Name *"),
+        "likeText": MessageLookupByLibrary.simpleMessage("Like"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "methodNotAllowed":
             MessageLookupByLibrary.simpleMessage("405 Method Not Allowed"),
@@ -65,8 +68,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordhintText":
             MessageLookupByLibrary.simpleMessage("Create password"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
+        "searchText": MessageLookupByLibrary.simpleMessage("Search..."),
+        "seeLessText": MessageLookupByLibrary.simpleMessage("See Less"),
+        "seeMoreText": MessageLookupByLibrary.simpleMessage("See More"),
         "serverBroken":
             MessageLookupByLibrary.simpleMessage("500 Server Broken"),
+        "shareText": MessageLookupByLibrary.simpleMessage("Share"),
+        "sharesText": MessageLookupByLibrary.simpleMessage("Shares"),
         "signUpText": MessageLookupByLibrary.simpleMessage("Signup"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "success": MessageLookupByLibrary.simpleMessage("SUCCESS"),

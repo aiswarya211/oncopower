@@ -205,7 +205,7 @@ class _RegisterPage extends StatelessWidget {
                               height: 12,
                               child: Image.asset(
                                 viewModel.trailingImage,
-                                color: ColorResource.color1a1a1a,
+                                color: viewModel.eyeColor,
                               )),
                         ),
                       );

@@ -26,7 +26,7 @@ class ImageResource {
 
   static String cancelImage = _imagePNG("cancel_img");
 
-  static String ProfileImage = _imagePNG("profile_img");
+  static String profileImage = _imagePNG("profile_img");
 
   ///[JPG]
   static String onRoutesFound = _imageJPG("no_routes_found");

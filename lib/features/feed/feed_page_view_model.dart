@@ -1,4 +1,5 @@
 import 'package:data/entity/feed/feed_data_entity.dart';
+import 'package:domain/model/post/feed_post.dart';
 import 'package:domain/usecase/feed/feed_usecase.dart';
 import 'package:oncopower/base/base_page_view_model.dart';
 import 'package:oncopower/utils/app_subject.dart';
@@ -11,7 +12,14 @@ class FeedPageViewModel extends BasePageViewModel with FeedViewModelStreams {
 
   final FeedUseCase _feedUseCase;
 
-  List<FeedList> feedList = [];
+  bool isLoading = false;
+  int currentPage = 1;
+  int? lastPage;
+  bool isLastPage = false;
+  List<FeedPost> feedPost = [];
+
+  Stream<Resource<FeedData>> get getFeedListResponseStream =>
+      _getAllFeedListResponse.stream;
 
   Stream<bool> get feedSucessStream => _feedSucess.stream;
 
@@ -19,6 +27,7 @@ class FeedPageViewModel extends BasePageViewModel with FeedViewModelStreams {
     this._feedUseCase,
   ) {
     initial();
+    tiggerGetFeedList();
   }
 
   void initial() {
@@ -36,12 +45,21 @@ class FeedPageViewModel extends BasePageViewModel with FeedViewModelStreams {
             }
 
             if (event.status == Status.success) {
-              feedList.addAll(event.data!.feed!.feedList);
+              feedPost.addAll(event.data!.feed!.feedList
+                  .map((e) => e.feedPostEntity!.transform())
+                  .toList());
+
+              _getAllFeedListResponse
+                  .add(Resource.success(data: event.data!.feed));
             }
           },
         );
       },
     );
+  }
+
+  void tiggerGetFeedList() {
+    _getFeedRequest.add(GetFeedUseCaseParams());
   }
 }
 
@@ -50,6 +68,8 @@ mixin FeedViewModelStreams {
   final _getFeedRequest = AppStream<GetFeedUseCaseParams>();
   // Response Streams
   final _getFeedResponse = AppStream<Resource<FeedList>>(preserveState: true);
+  final _getAllFeedListResponse =
+      AppStream<Resource<FeedData>>(preserveState: true);
 
   final _feedSucess = AppStream<bool>(initialValue: false);
 }

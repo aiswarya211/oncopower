@@ -24,7 +24,7 @@ class RegisterPageViewModel extends BasePageViewModel
 
   String trailingImage = ImageResource.onVisionIcon;
 
-  Color eyeColor = ColorResource.hashgray;
+  Color eyeColor = ColorResource.color82808e;
 
   final RegisterUseCase _registerUseCase;
 
@@ -34,21 +34,6 @@ class RegisterPageViewModel extends BasePageViewModel
     this._registerUseCase,
   ) {
     listenRegisterRequest();
-    init();
-    resetAllPresetValues();
-  }
-
-  Future<void> init() async {
-    resetAllPresetValues(isRemoveDatas: true);
-  }
-
-  void resetAllPresetValues({bool isRemoveDatas = false}) {
-    if (isRemoveDatas) {
-      emailController.clear();
-      passwordController.clear();
-      firstNameController.clear();
-      lastNameController.clear();
-    }
   }
 
   void listenRegisterRequest() {
@@ -66,7 +51,6 @@ class RegisterPageViewModel extends BasePageViewModel
         if (event.status == Status.success) {
           showSuccessToast(event.data!.message!);
           _registerResponse.add(Resource.success(data: true));
-          resetAllPresetValues();
         }
       });
     });
@@ -86,10 +70,8 @@ class RegisterPageViewModel extends BasePageViewModel
     _passwordObscure
         .add(Resource.success(data: !_passwordObscure.value!.data!));
     if (_passwordObscure.value!.data!) {
-      trailingImage = ImageResource.onVisionIcon;
-      eyeColor = ColorResource.hashgray;
+      eyeColor = ColorResource.color82808e;
     } else {
-      trailingImage = ImageResource.onVisionIcon;
       eyeColor = ColorResource.color1fabf1;
     }
   }
