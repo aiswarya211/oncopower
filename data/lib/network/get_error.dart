@@ -12,7 +12,7 @@ NetworkError getError({Response? apiResponse}) {
           ErrorResponseEntity.fromJson((apiResponse?.data) is String
               ? jsonDecode(apiResponse?.data)
               : apiResponse?.data as Map<String, dynamic>);
-              print([errorResponseEntity.message,'jhuu']);
+            
       return NetworkError(
           httpError: apiResponse!.statusCode.toString(),
           errorCode: errorResponseEntity.message!,

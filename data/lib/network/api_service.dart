@@ -1,6 +1,8 @@
 import 'package:data/entity/feed/feed_response_entity.dart';
+import 'package:data/entity/like/like_response_entity.dart';
 import 'package:data/entity/login/login_response_entity.dart';
 import 'package:data/entity/register/register_response_entity.dart';
+import 'package:data/entity/request/like_request.dart';
 import 'package:data/entity/request/login_request.dart';
 import 'package:data/entity/request/register_request.dart';
 import 'package:dio/dio.dart';
@@ -24,4 +26,8 @@ abstract class ApiService {
 
   @GET("/user/get-feed?limit=40&listing_type=all_feed")
   Future<HttpResponse<FeedResponseEntity>> getFeed();
+
+  @POST("/user/post-like")
+  Future<HttpResponse<LikeResponseEntity>> like(
+      @Body() LikeDataRequest likeDataRequest);
 }
