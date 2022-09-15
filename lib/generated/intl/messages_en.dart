@@ -24,6 +24,9 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "AcceptTermsAndCondition":
             MessageLookupByLibrary.simpleMessage("Accept Terms and conditions"),
+        "addPostHintText": MessageLookupByLibrary.simpleMessage(
+            "What do you want to talk about?"),
+        "addPostText": MessageLookupByLibrary.simpleMessage("Post"),
         "alreadyHaveAccText":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "appName": MessageLookupByLibrary.simpleMessage("oncopower"),

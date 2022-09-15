@@ -1,4 +1,4 @@
-import 'package:data/entity/like/like_entity.dart';
+import 'package:data/entity/feed/like_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'like_response_entity.g.dart';

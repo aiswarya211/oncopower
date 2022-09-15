@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:data/entity/feed/feed_data_entity.dart';
 import 'package:domain/model/post/feed_post.dart';
 import 'package:flutter/material.dart';
@@ -71,22 +72,35 @@ class _WebLayout extends StatelessWidget {
             if (viewModel.feedPost.isEmpty) {
               return Container();
             }
-            return SingleChildScrollView(
-              controller: ScrollController(),
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: !viewModel.isLastPage
-                    ? viewModel.feedPost.length + 1
-                    : viewModel.feedPost.length,
-                itemBuilder: (context, index) {
-                  return index >= viewModel.feedPost.length
-                      ? const Center(
-                          child: CircularProgressIndicator(),
-                        )
-                      : _FeedListView(feedPost: viewModel.feedPost[index]);
-                },
-              ),
+            return ListView.builder(
+             
+             
+              itemCount: !viewModel.isLastPage
+                  ? viewModel.feedPost.length + 1
+                  : viewModel.feedPost.length,
+              itemBuilder: (context, index) {
+                return index >= viewModel.feedPost.length
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 12),
+                        child: Card(
+                          shape: const RoundedRectangleBorder(
+                          
+                            side: BorderSide(
+                              color: ColorResource.color82808e,
+                            ),
+                          ),
+                          elevation: 2,
+                          margin: const EdgeInsets.all(8),
+                          color: ColorResource.colorffffff,
+                          child: _FeedListView(
+                              feedPost: viewModel.feedPost[index]),
+                        ),
+                      );
+              },
             );
           },
         ),
@@ -112,14 +126,10 @@ class _MobileLayout extends StatelessWidget {
           if (viewModel.feedPost.isEmpty) {
             return Container();
           }
-          return NotificationListener<ScrollNotification>(
-            onNotification: (ScrollNotification scrollInfo) {
-              if (!viewModel.isLoading &&
-                  scrollInfo.metrics.pixels ==
-                      scrollInfo.metrics.maxScrollExtent) {
-                // viewModel.triggerMobilePagination();
-              }
-              return true;
+          return RefreshIndicator(
+            backgroundColor: ColorResource.colorffffff,
+            onRefresh: () async {
+              viewModel.tiggerGetFeedList();
             },
             child: ListView.builder(
               scrollDirection: Axis.vertical,
@@ -132,7 +142,16 @@ class _MobileLayout extends StatelessWidget {
                     ? const Center(
                         child: CircularProgressIndicator(),
                       )
-                    : _FeedListView(feedPost: viewModel.feedPost[index]);
+                    : Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 12),
+                        child: Card(
+                          margin: const EdgeInsets.all(6),
+                          color: ColorResource.colorffffff,
+                          child: _FeedListView(
+                              feedPost: viewModel.feedPost[index]),
+                        ),
+                      );
               },
             ),
           );
@@ -197,11 +216,12 @@ class _FeedPageAppBar extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  IconButton(
-                    icon: const Icon(
+                  const IconButton(
+                    color: ColorResource.colorffffff,
+                    icon: Icon(
                       Icons.search,
                     ),
-                    onPressed: () {},
+                    onPressed: null,
                   ),
                   CustomText(
                     S.of(context).search,
@@ -220,8 +240,11 @@ class _FeedPageAppBar extends StatelessWidget {
               decoration: const ShapeDecoration(
                   color: Colors.black12, shape: CircleBorder()),
               child: IconButton(
-                icon: const Icon(Icons.notifications),
-                onPressed: () {},
+                iconSize: 28,
+                icon: const Icon(Icons.add),
+                onPressed: () {
+                  context.beamToNamed("/add-post");
+                },
               ),
             ),
           ),
@@ -251,151 +274,144 @@ class _FeedListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints(maxWidth: 500),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-      child: Card(
-        color: ColorResource.colorffffff,
-        child: Column(
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                if (feedPost!.user!.media != null)
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 15,
-                      left: 18,
-                    ),
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          fit: BoxFit.contain,
-                          image: NetworkImage(feedPost!.user!.media!.image!),
-                        ),
-                      ),
-                    ),
-                  )
-                else
-                  const Padding(
-                    padding: EdgeInsets.only(
-                      top: 15,
-                      left: 18,
-                    ),
-                    child: SizedBox(
-                      width: 40,
-                      height: 40,
-                      child: Icon(
-                        Icons.account_circle_sharp,
-                        color: ColorResource.color82808e,
-                        size: 45,
-                      ),
+            if (feedPost!.user!.media != null)
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 15,
+                  left: 18,
+                ),
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      fit: BoxFit.contain,
+                      image: NetworkImage(feedPost!.user!.media!.image!),
                     ),
                   ),
-                const SizedBox(
-                  width: 10,
                 ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
+              )
+            else
+              const Padding(
+                padding: EdgeInsets.only(
+                  top: 15,
+                  left: 18,
+                ),
+                child: SizedBox(
+                  width: 40,
+                  height: 40,
+                  child: Icon(
+                    Icons.account_circle_sharp,
+                    color: ColorResource.color82808e,
+                    size: 45,
+                  ),
+                ),
+              ),
+            const SizedBox(
+              width: 10,
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          if (feedPost!.user?.firstName != null &&
-                              feedPost!.user?.firstName != '')
-                            Padding(
-                              padding: const EdgeInsets.only(top: 15),
-                              child: Container(
-                                alignment: Alignment.topLeft,
-                                child: CustomText(
-                                  feedPost!.user!.firstName!,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  textAlign: TextAlign.left,
-                                  color: ColorResource.color1a1a1a,
-                                ),
-                              ),
-                            )
-                          else
-                            Padding(
-                              padding: const EdgeInsets.only(top: 15),
-                              child: Container(
-                                alignment: Alignment.topLeft,
-                                child: CustomText(
-                                  feedPost!.user!.source!,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  textAlign: TextAlign.left,
-                                  color: ColorResource.color1a1a1a,
-                                ),
-                              ),
-                            ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Container(
+                      if (feedPost!.user?.firstName != null &&
+                          feedPost!.user?.firstName != '')
+                        Padding(
+                          padding: const EdgeInsets.only(top: 15),
+                          child: Container(
                             alignment: Alignment.topLeft,
-                            width: 12,
-                            height: 12,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                fit: BoxFit.contain,
-                                image: AssetImage(ImageResource.clockImage),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
                             child: CustomText(
-                              Jiffy(feedPost!.createdAt)
-                                  .endOf(Units.HOUR)
-                                  .fromNow(),
-                              fontSize: 12,
+                              feedPost!.user!.firstName!,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold,
                               textAlign: TextAlign.left,
-                              color: ColorResource.color82808e,
+                              color: ColorResource.color1a1a1a,
                             ),
                           ),
-                        ],
+                        )
+                      else
+                        Padding(
+                          padding: const EdgeInsets.only(top: 15),
+                          child: Container(
+                            alignment: Alignment.topLeft,
+                            child: CustomText(
+                              feedPost!.user!.source!,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              textAlign: TextAlign.left,
+                              color: ColorResource.color1a1a1a,
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        alignment: Alignment.topLeft,
+                        width: 12,
+                        height: 12,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.contain,
+                            image: AssetImage(ImageResource.clockImage),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: CustomText(
+                          Jiffy(feedPost!.createdAt)
+                              .endOf(Units.HOUR)
+                              .fromNow(),
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          textAlign: TextAlign.left,
+                          color: ColorResource.color82808e,
+                        ),
                       ),
                     ],
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: Container(
-                    alignment: Alignment.centerRight,
-                    width: 45,
-                    height: 45,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.contain,
-                        image: AssetImage(ImageResource.menuImage),
-                      ),
-                    ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Container(
+                alignment: Alignment.centerRight,
+                width: 45,
+                height: 45,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    fit: BoxFit.contain,
+                    image: AssetImage(ImageResource.menuImage),
                   ),
                 ),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            _DescriptionAndImage(feedPost: feedPost),
-            const SizedBox(
-              height: 10,
+              ),
             ),
           ],
         ),
-      ),
+        const SizedBox(
+          height: 10,
+        ),
+        _DescriptionAndImage(feedPost: feedPost),
+        const SizedBox(
+          height: 10,
+        ),
+      ],
     );
   }
 }
@@ -453,7 +469,7 @@ class _DescriptionAndImage extends StatelessWidget {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    fit: BoxFit.fill,
+                    fit: BoxFit.contain,
                     image: NetworkImage(feedPost!.user!.media!.image!),
                   ),
                 ),
@@ -572,6 +588,7 @@ class _LikeCommantShare extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.read(feedModuleProvider);
     return IntrinsicHeight(
       child: Row(
         children: [
@@ -580,7 +597,9 @@ class _LikeCommantShare extends StatelessWidget {
               left: 20,
             ),
             child: TextButton.icon(
-              onPressed: (() {}),
+              onPressed: (() {
+                viewModel.tiggerLikeRequest(feedPost!);
+              }),
               icon: Image(
                 image: AssetImage(ImageResource.likeImage),
                 fit: BoxFit.cover,

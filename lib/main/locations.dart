@@ -1,6 +1,7 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:oncopower/di/app_modules.dart';
+import 'package:oncopower/features/addpost/add_post_view.dart';
 import 'package:oncopower/features/feed/feed_page.dart';
 import 'package:oncopower/features/login/login_page.dart';
 import 'package:oncopower/features/register/register_page.dart';
@@ -16,6 +17,7 @@ class BeamerRoutes {
       LoginLocation(),
       GetFeedLocation(),
       RegisterLocation(),
+      AddPostLocation(),
     ]),
     initialPath: "/login",
     notFoundPage: notFoundPage,
@@ -95,7 +97,6 @@ class RegisterLocation extends BeamLocation<BeamState> {
         childWidget: const RegisterPage(),
         pageTitle: "Register",
       ),
-      
     ];
   }
 
@@ -117,4 +118,20 @@ class GetFeedLocation extends BeamLocation<BeamState> {
 
   @override
   List<Pattern> get pathPatterns => ["/feed"];
+}
+
+class AddPostLocation extends BeamLocation<BeamState> {
+  @override
+  List<BeamPage> buildPages(BuildContext context, BeamState state) {
+    return [
+      CustomTransitionPage(
+        key: const ValueKey("AddPost"),
+        childWidget: const AddPostPage(),
+        pageTitle: "AddPost",
+      ),
+    ];
+  }
+
+  @override
+  List<Pattern> get pathPatterns => ["/add-post"];
 }

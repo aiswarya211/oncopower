@@ -93,3 +93,45 @@ class CustomButton extends StatelessWidget {
     );
   }
 }
+class CustomTextButton extends StatelessWidget {
+  const CustomTextButton({
+    Key? key,
+    this.context,
+    this.text,
+    this.onPressed,
+    this.style,
+    this.primary,
+    this.textStyle,
+    this.icon,
+    required this.child,
+    this.backgroundColor,
+    this.color,
+    this.padding,
+  }) : super(key: key);
+
+  final BuildContext? context;
+  final String? text;
+  final VoidCallback? onPressed;
+  final dynamic style;
+  final Icon? icon;
+  final Color? primary;
+  final dynamic backgroundColor;
+  final TextStyle? textStyle;
+  final Widget child;
+  final Color? color;
+  final EdgeInsetsGeometry? padding;
+
+  @override
+  Widget build(
+    BuildContext context,
+  ) {
+    return TextButton(
+      onPressed: onPressed,
+      style: TextButton.styleFrom(
+          foregroundColor: primary,
+          padding: padding,
+          backgroundColor: backgroundColor),
+      child: child,
+    );
+  }
+}

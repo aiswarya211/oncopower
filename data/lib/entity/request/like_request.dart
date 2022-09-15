@@ -6,8 +6,10 @@ class LikeDataRequest{
   bool? islike;
   @JsonKey(name: 'like_count')
   int? count;
+  @JsonKey(name: 'post_id')
+  int? postId;
 
-  LikeDataRequest({this.islike, this.count});
+  LikeDataRequest({this.islike, this.count,this.postId});
 
   factory LikeDataRequest.fromJson(Map<String, dynamic> json) =>
       _$LikeDataRequestFromJson(json);

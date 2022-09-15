@@ -3,6 +3,7 @@ class ImageResource {
 
   static String _imageJPG(String name) => "assets/images/$name.jpg";
 
+  static String _imageSVG(String name) => "assets/images/$name.svg";
 
   static String oncopowerLogo = _imagePNG("oncopower_logo");
 
@@ -31,5 +32,7 @@ class ImageResource {
   ///[JPG]
   static String onRoutesFound = _imageJPG("no_routes_found");
 
-
+///[SVG]
+ 
+ static String isLike = _imageSVG("like");
 }

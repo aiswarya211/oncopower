@@ -10,9 +10,11 @@ FeedData _$FeedDataFromJson(Map<String, dynamic> json) => FeedData(
       feedList: (json['list'] as List<dynamic>)
           .map((e) => FeedList.fromJson(e as Map<String, dynamic>))
           .toList(),
+      currentPage: json['current_page'] as int,
     );
 
 Map<String, dynamic> _$FeedDataToJson(FeedData instance) => <String, dynamic>{
+      'current_page': instance.currentPage,
       'list': instance.feedList,
     };
 

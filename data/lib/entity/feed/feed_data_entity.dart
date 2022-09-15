@@ -8,9 +8,11 @@ part 'feed_data_entity.g.dart';
 
 @JsonSerializable()
 class FeedData {
+  @JsonKey(name: 'current_page')
+  int currentPage;
   @JsonKey(name: 'list')
   List<FeedList> feedList;
-  FeedData({required this.feedList});
+  FeedData({required this.feedList,required this.currentPage});
   factory FeedData.fromJson(Map<String, dynamic> json) =>
       _$FeedDataFromJson(json);
   Map<String, dynamic> toJson() => _$FeedDataToJson(this);

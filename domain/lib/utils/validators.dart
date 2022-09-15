@@ -12,6 +12,17 @@ class Validator {
           return ValidationState(error: " is required");
         }
       }
+      if (rule == "postId") {
+        if (input == null || input == "") {
+          return ValidationState(error: " is required");
+        }
+      }
+
+      if (rule == "description") {
+        if (input == null || input == "") {
+          return ValidationState(error: " is required");
+        }
+      }
 
       if (rule == "email") {
         if (input == null || input == "") {

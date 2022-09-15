@@ -479,6 +479,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Post`
+  String get addPostText {
+    return Intl.message(
+      'Post',
+      name: 'addPostText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What do you want to talk about?`
+  String get addPostHintText {
+    return Intl.message(
+      'What do you want to talk about?',
+      name: 'addPostHintText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
