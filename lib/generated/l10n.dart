@@ -110,6 +110,16 @@ class S {
     );
   }
 
+  /// `No internet connection`
+  String get others {
+    return Intl.message(
+      'No internet connection',
+      name: 'others',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Error`
   String get error {
     return Intl.message(
@@ -495,6 +505,16 @@ class S {
     return Intl.message(
       'What do you want to talk about?',
       name: 'addPostHintText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please accept terms and conditions`
+  String get checkBoxValidation {
+    return Intl.message(
+      'Please accept terms and conditions',
+      name: 'checkBoxValidation',
       desc: '',
       args: [],
     );

@@ -3,6 +3,7 @@ enum ErrorType {
   ui,
 
   //Network Error
+  others,
   network,
   forbidden,
   serverBroken,

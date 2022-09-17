@@ -5,6 +5,7 @@
   "enterConfirmPassword": "Please enter your confirm password",
   "emptyEmailMessage": "Email can't be empty",
   "enterValidEmail": "Please enter a valid email",
+  "others":"No internet connection",
   "error": "Error",
   "success": "SUCCESS",
   "email": "Email",
@@ -43,5 +44,6 @@
   "seeMoreText": "See More",
   "seeLessText": "See Less",
   "addPostText": "Post",
-  "addPostHintText": "What do you want to talk about?"
+  "addPostHintText": "What do you want to talk about?",
+  "checkBoxValidation":"Please accept terms and conditions"
 }

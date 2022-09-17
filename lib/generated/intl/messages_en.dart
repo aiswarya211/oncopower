@@ -30,6 +30,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "alreadyHaveAccText":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "appName": MessageLookupByLibrary.simpleMessage("oncopower"),
+        "checkBoxValidation": MessageLookupByLibrary.simpleMessage(
+            "Please accept terms and conditions"),
         "checkYourInternetConnection": MessageLookupByLibrary.simpleMessage(
             "Please check your internet connection"),
         "commentText": MessageLookupByLibrary.simpleMessage("Comment"),
@@ -66,6 +68,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "methodNotAllowed":
             MessageLookupByLibrary.simpleMessage("405 Method Not Allowed"),
         "oncopower": MessageLookupByLibrary.simpleMessage("oncopower"),
+        "others":
+            MessageLookupByLibrary.simpleMessage("No internet connection"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordLabelText": MessageLookupByLibrary.simpleMessage("Password *"),
         "passwordhintText":

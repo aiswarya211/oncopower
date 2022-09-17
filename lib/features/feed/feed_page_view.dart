@@ -73,11 +73,7 @@ class _WebLayout extends StatelessWidget {
               return Container();
             }
             return ListView.builder(
-             
-             
-              itemCount: !viewModel.isLastPage
-                  ? viewModel.feedPost.length + 1
-                  : viewModel.feedPost.length,
+              itemCount:viewModel.feedPost.length,
               itemBuilder: (context, index) {
                 return index >= viewModel.feedPost.length
                     ? const Center(
@@ -88,7 +84,6 @@ class _WebLayout extends StatelessWidget {
                             horizontal: 12, vertical: 12),
                         child: Card(
                           shape: const RoundedRectangleBorder(
-                          
                             side: BorderSide(
                               color: ColorResource.color82808e,
                             ),
@@ -134,9 +129,7 @@ class _MobileLayout extends StatelessWidget {
             child: ListView.builder(
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
-              itemCount: !viewModel.isLastPage
-                  ? viewModel.feedPost.length + 1
-                  : viewModel.feedPost.length,
+              itemCount: viewModel.feedPost.length,
               itemBuilder: (context, index) {
                 return index >= viewModel.feedPost.length
                     ? const Center(
@@ -149,7 +142,8 @@ class _MobileLayout extends StatelessWidget {
                           margin: const EdgeInsets.all(6),
                           color: ColorResource.colorffffff,
                           child: _FeedListView(
-                              feedPost: viewModel.feedPost[index]),
+                            feedPost: viewModel.feedPost[index],
+                          ),
                         ),
                       );
               },
@@ -465,6 +459,7 @@ class _DescriptionAndImage extends StatelessWidget {
         ),
         feedPost!.user?.media != null
             ? Container(
+             
                 padding: const EdgeInsets.all(180),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(

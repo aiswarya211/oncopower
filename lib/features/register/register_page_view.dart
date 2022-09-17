@@ -1,4 +1,5 @@
 import 'package:beamer/beamer.dart';
+import 'package:checkbox_formfield/checkbox_list_tile_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -43,7 +44,6 @@ class _WebLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    listenRegisterSuccess(context);
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
@@ -60,15 +60,6 @@ class _WebLayout extends StatelessWidget {
       ),
     );
   }
-
-  void listenRegisterSuccess(BuildContext context) {
-    final viewModel = context.read(registerModuleProvider);
-    viewModel.registerSucessStream.listen((event) {
-      if (event) {
-        context.beamToNamed("/login");
-      }
-    });
-  }
 }
 
 class _MobileLayout extends StatelessWidget {
@@ -76,7 +67,6 @@ class _MobileLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    listenRegisterSuccess(context);
     return Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -87,20 +77,11 @@ class _MobileLayout extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: const [
-              SizedBox(height: 100),
+              SizedBox(height: 80),
               _RegisterPage(),
             ],
           ),
         ));
-  }
-
-  void listenRegisterSuccess(BuildContext context) {
-    final viewModel = context.read(registerModuleProvider);
-    viewModel.registerSucessStream.listen((event) {
-      if (event) {
-        context.beamToNamed("/login");
-      }
-    });
   }
 }
 
@@ -123,7 +104,7 @@ class _RegisterPage extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 30,
+          height: 20,
         ),
         Container(
           constraints: const BoxConstraints(maxWidth: 500),
@@ -148,78 +129,112 @@ class _RegisterPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 25,
+                  height: 10,
                 ),
-                CustomTextField(
-                  borderRadius: 8,
-                  hintText: S.of(context).firstNameText,
-                  labelText: S.of(context).firstNameText,
-                  inputTextColor: ColorResource.color1a1a1a,
-                  controller: viewModel.firstNameController,
-                  onFieldSubmitted: (value) => viewModel.signUpOnTap(),
-                  inputFontWeight: FontWeight.normal,
+                Container(
+                  padding: const EdgeInsets.all(15),
+                  child: CustomTextField(
+                    borderRadius: 8,
+                    border: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    hintText: S.of(context).firstNameText,
+                    labelText: S.of(context).firstNameText,
+                    inputTextColor: ColorResource.color1a1a1a,
+                    controller: viewModel.firstNameController,
+                    onFieldSubmitted: (value) => viewModel.signUpOnTap(),
+                    inputFontWeight: FontWeight.normal,
+                  ),
                 ),
-                const SizedBox(height: 25),
-                CustomTextField(
-                  borderRadius: 8,
-                  hintText: S.of(context).lastNameText,
-                  labelText: S.of(context).lastNameText,
-                  inputTextColor: ColorResource.color1a1a1a,
-                  controller: viewModel.lastNameController,
-                  onFieldSubmitted: (value) => viewModel.signUpOnTap(),
-                  inputFontWeight: FontWeight.normal,
+                const SizedBox(height: 10),
+                Container(
+                  padding: const EdgeInsets.all(15),
+                  child: CustomTextField(
+                    borderRadius: 8,
+                    border: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    hintText: S.of(context).lastNameText,
+                    labelText: S.of(context).lastNameText,
+                    inputTextColor: ColorResource.color1a1a1a,
+                    controller: viewModel.lastNameController,
+                    onFieldSubmitted: (value) => viewModel.signUpOnTap(),
+                    inputFontWeight: FontWeight.normal,
+                  ),
                 ),
-                const SizedBox(height: 25),
-                CustomTextField(
-                  borderRadius: 8,
-                  hintText: S.of(context).emailAddresshintText,
-                  labelText: S.of(context).emailAddresslabelText,
-                  inputTextColor: ColorResource.color1a1a1a,
-                  controller: viewModel.emailController,
-                  onFieldSubmitted: (value) => viewModel.signUpOnTap(),
-                  inputFontWeight: FontWeight.normal,
-                  keyboardType: TextInputType.emailAddress,
+                const SizedBox(height: 20),
+                Container(
+                  padding: const EdgeInsets.all(15),
+                  child: CustomTextField(
+                    borderRadius: 8,
+                    border: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    hintText: S.of(context).emailAddresshintText,
+                    labelText: S.of(context).emailAddresslabelText,
+                    inputTextColor: ColorResource.color1a1a1a,
+                    controller: viewModel.emailController,
+                    onFieldSubmitted: (value) => viewModel.signUpOnTap(),
+                    inputFontWeight: FontWeight.normal,
+                    keyboardType: TextInputType.emailAddress,
+                  ),
                 ),
-                const SizedBox(height: 25),
+                const SizedBox(height: 10),
                 AppStreamBuilder<Resource<bool>>(
                     initialData: Resource.success(data: true),
                     stream: viewModel.passwordObscured,
                     dataBuilder: (context, snapshot) {
-                      return CustomTextField(
-                        borderRadius: 8,
-                        hintText: S.of(context).passwordhintText,
-                        labelText: S.of(context).passwordLabelText,
-                        controller: viewModel.passwordController,
-                        inputTextColor: ColorResource.color1a1a1a,
-                        inputFontWeight: FontWeight.normal,
-                        isObscure: snapshot!.data!,
-                        onFieldSubmitted: (value) => viewModel.signUpOnTap(),
-                        suffixWidget: IconButton(
-                          onPressed: () {
-                            viewModel.passwordVisibleChange();
-                          },
-                          icon: Container(
-                              alignment: Alignment.center,
-                              margin: const EdgeInsets.only(right: 10),
-                              width: 15,
-                              height: 12,
-                              child: Image.asset(
-                                viewModel.trailingImage,
-                                color: viewModel.eyeColor,
-                              )),
+                      return Container(
+                        padding: const EdgeInsets.all(15),
+                        child: CustomTextField(
+                          borderRadius: 8,
+                          border: const OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                          hintText: S.of(context).passwordhintText,
+                          labelText: S.of(context).passwordLabelText,
+                          controller: viewModel.passwordController,
+                          inputTextColor: ColorResource.color1a1a1a,
+                          inputFontWeight: FontWeight.normal,
+                          isObscure: snapshot!.data!,
+                          onFieldSubmitted: (value) => viewModel.signUpOnTap(),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              viewModel.passwordVisibleChange();
+                            },
+                            icon: Container(
+                                alignment: Alignment.center,
+                                margin: const EdgeInsets.only(right: 10),
+                                width: 15,
+                                height: 12,
+                                child: Image.asset(
+                                  viewModel.trailingImage,
+                                  color: viewModel.eyeColor,
+                                )),
+                          ),
                         ),
                       );
                     }),
-                const SizedBox(height: 25),
-                Container(
-                  alignment: Alignment.center,
-                  child: CustomText(
-                    S.of(context).AcceptTermsAndCondition,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    textAlign: TextAlign.left,
-                    color: const Color(0xff232222),
+                const SizedBox(height: 10),
+                CheckboxListTileFormField(
+                  onChanged: (value) {
+                    viewModel.changeChekBoxOnClick(value);
+                  },
+                  title: Container(
+                    alignment: Alignment.centerLeft,
+                    child: CustomText(
+                      S.of(context).AcceptTermsAndCondition,
+                      fontWeight: FontWeight.bold,
+                      textAlign: TextAlign.left,
+                      color: const Color(0xff232222),
+                    ),
                   ),
+                  initialValue: viewModel.isChecked,
+                  activeColor: ColorResource.color1fabf1,
+                  validator: (value) {
+                    if (!viewModel.isChecked) {
+                      return S.of(context).AcceptTermsAndCondition;
+                    } else {
+                      return null;
+                    }
+                  },
                 ),
                 const SizedBox(height: 25),
                 Container(
@@ -227,11 +242,13 @@ class _RegisterPage extends StatelessWidget {
                   alignment: Alignment.center,
                   child: CustomButton(
                     text: S.of(context).signUpText,
-                    onPressed: viewModel.signUpOnTap,
+                    onPressed: () {
+                      viewModel.signUpOnTap();
+                    },
                     borderRadius: 50,
                   ),
                 ),
-                const SizedBox(height: 25),
+                const SizedBox(height: 10),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,

@@ -37,6 +37,7 @@ class AddPostPageViewModel extends BasePageViewModel
             if (event.status == Status.success) {
                showSuccessToast(event.data!.message!);
               _addPostResponse.add(Resource.success(data: true));
+              descriptionController.clear();
             }
           },
         );

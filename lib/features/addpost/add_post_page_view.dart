@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:oncopower/base/base_page.dart';
@@ -32,8 +33,16 @@ class AddPostPageView extends BasePageViewWidget<AddPostPageViewModel> {
             ),
           ),
           leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.cancel,size: 50,color:  ColorResource.color1a1a1a,),
+            onPressed: () {
+              Navigator.pop(context);
+              context.beamToNamed("/feed");
+            },
+            icon: Image(
+              image: AssetImage(ImageResource.cancelImage),
+              color: context.isDesktop
+                  ? ColorResource.color1a1a1a
+                  : ColorResource.colorffffff,
+            ),
           ),
           actions: const [_AddPostAppBar()],
           backgroundColor: context.isDesktop
@@ -86,7 +95,7 @@ class _MobileLayout extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [SizedBox(height: 100), _AddPostPiceker()],
+          children: const [_AddPostPiceker()],
         ),
       ),
     );
@@ -98,12 +107,19 @@ class _AddPostAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.read(addPostModuleProvider);
-    return SizedBox(
+    return Expanded(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(right: 95, top: 40, left: 40),
+            padding: context.isDesktop
+                ? const EdgeInsets.only(left: 500)
+                : const EdgeInsets.only(
+                    right: 60,
+                    top: 40,
+                    left: 40,
+                    bottom: 10,
+                  ),
             child: Container(
               alignment: Alignment.center,
               width: 55,
@@ -116,19 +132,30 @@ class _AddPostAppBar extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(
+            width: 20,
+          ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 10, right: 20),
+            padding: context.isDesktop
+                ? const EdgeInsets.only(left: 800)
+                : const EdgeInsets.only(bottom: 10,top: 40,),
             child: Container(
               alignment: Alignment.centerLeft,
               child: CustomTextButton(
-                  onPressed: viewModel.triggerSharePost,
-                  child: CustomText(
-                    color:ColorResource.colorffffff,
-                    S.of(context).addPostText,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    textAlign: TextAlign.left,
-                  )),
+                onPressed: (() {
+                  viewModel.triggerSharePost();
+                  // context.beamToNamed("/feed");
+                }),
+                child: CustomText(
+                  color: context.isDesktop
+                      ? ColorResource.color1a1a1a
+                      : ColorResource.colorffffff,
+                  S.of(context).addPostText,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  textAlign: TextAlign.left,
+                ),
+              ),
             ),
           ),
         ],
@@ -150,9 +177,9 @@ class _AddPostPiceker extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(50),
             child: Container(
+              constraints: const BoxConstraints(maxWidth: 300),
               alignment: Alignment.bottomLeft,
               child: CustomTextField(
-                borderRadius: 8,
                 hintText: S.of(context).addPostHintText,
                 inputTextColor: ColorResource.color1a1a1a,
                 controller: viewModel.descriptionController,

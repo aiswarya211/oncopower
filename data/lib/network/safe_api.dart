@@ -31,11 +31,7 @@ Future<Either<NetworkError, T>?> safeApiCall<T>(Future<T> apiCall) async {
             break;
           case DioErrorType.other:
             return Left(
-              NetworkError(
-                  message:
-                      "Connection to API server failed due to internet connection",
-                  httpError: "503",
-                  cause: throwable),
+              NetworkError(message: throwable.message, cause: throwable),
             );
         }
 
@@ -54,7 +50,6 @@ Future<Either<NetworkError, T>?> safeApiCall<T>(Future<T> apiCall) async {
 }
 
 extension RetrofitResponse on HttpResponse {
-
   bool isSuccessful() {
     return response.statusCode! >= 200 && response.statusCode! < 300;
   }

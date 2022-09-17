@@ -32,6 +32,8 @@ class ErrorParser {
         return error!.error.message;
       case ErrorType.methodNotAllowed:
         return localisedHelper.methodNotAllowed;
+      case ErrorType.others:
+        return localisedHelper.others;
       default:
         return "";
     }

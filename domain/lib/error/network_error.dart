@@ -5,7 +5,7 @@ import 'package:domain/model/error_info.dart';
 
 class NetworkError extends BaseError {
   NetworkError(
-      {required String httpError,
+      {String? httpError,
       String errorCode = "",
       String? message = "",
       required Exception cause,
@@ -43,7 +43,8 @@ class NetworkError extends BaseError {
             cause: cause, error: error, type: ErrorType.methodNotAllowed);
 
       case "422":
-      return AppError(cause: cause, error: error, type: ErrorType.unProcessableEntity);
+        return AppError(
+            cause: cause, error: error, type: ErrorType.unProcessableEntity);
 
       case "429":
         return AppError(
@@ -58,9 +59,7 @@ class NetworkError extends BaseError {
             cause: cause, error: error, type: ErrorType.invaildPassword);
 
       default:
-        return AppError(cause: cause, error: error, type: ErrorType.network);
+        return AppError(cause: cause, error: error, type: ErrorType.others);
     }
   }
 }
-
-

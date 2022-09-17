@@ -17,6 +17,7 @@ class RegisterPageViewModel extends BasePageViewModel
 
   final source = "oncopower";
   final userType = "patient";
+  bool isChecked = false;
 
   Stream<Resource<bool>> get isLoggedIn => _registerResponse.stream;
 
@@ -51,6 +52,10 @@ class RegisterPageViewModel extends BasePageViewModel
         if (event.status == Status.success) {
           showSuccessToast(event.data!.message!);
           _registerResponse.add(Resource.success(data: true));
+          firstNameController.clear();
+          lastNameController.clear();
+          emailController.clear();
+          passwordController.clear();
         }
       });
     });
@@ -73,6 +78,18 @@ class RegisterPageViewModel extends BasePageViewModel
       eyeColor = ColorResource.color82808e;
     } else {
       eyeColor = ColorResource.color1fabf1;
+    }
+  }
+
+  void changeChekBoxOnClick(bool value) {
+    isChecked = value;
+  }
+
+  void checkBoxValidation(bool value) {
+    if (isChecked = value) {
+      showErrorState();
+    } else {
+      return;
     }
   }
 }

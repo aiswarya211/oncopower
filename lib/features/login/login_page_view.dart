@@ -129,41 +129,52 @@ class _LoginPage extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                CustomTextField(
-                  borderRadius: 8,
-                  hintText: S.of(context).hintEmailId,
-                  labelText: S.of(context).lableEmailId,
-                  inputTextColor: ColorResource.color1a1a1a,
-                  controller: viewModel.emailController,
-                  onFieldSubmitted: (value) => viewModel.loginOnTap(),
-                  inputFontWeight: FontWeight.normal,
-                  keyboardType: TextInputType.emailAddress,
+                Container(
+                  padding: const EdgeInsets.all(15),
+                  child: CustomTextField(
+                    borderRadius: 8,
+                    border: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    hintText: S.of(context).hintEmailId,
+                    labelText: S.of(context).lableEmailId,
+                    inputTextColor: ColorResource.color1a1a1a,
+                    controller: viewModel.emailController,
+                    onFieldSubmitted: (value) => viewModel.loginOnTap(),
+                    inputFontWeight: FontWeight.normal,
+                    keyboardType: TextInputType.emailAddress,
+                  ),
                 ),
-                const SizedBox(height: 25),
+                const SizedBox(height: 15),
                 AppStreamBuilder<Resource<bool>>(
                     initialData: Resource.success(data: true),
                     stream: viewModel.passwordObscured,
                     dataBuilder: (context, snapshot) {
-                      return CustomTextField(
-                        borderRadius: 8,
-                        hintText: S.of(context).hintPassword,
-                        labelText: S.of(context).lablePassword,
-                        controller: viewModel.passwordController,
-                        inputTextColor: ColorResource.color1a1a1a,
-                        inputFontWeight: FontWeight.normal,
-                        isObscure: snapshot!.data!,
-                        onFieldSubmitted: (value) => viewModel.loginOnTap(),
-                        suffixWidget: IconButton(
-                          onPressed: () {
-                            viewModel.passwordVisibleChange();
-                          },
-                          icon: Container(
-                            alignment: Alignment.center,
-                            margin: const EdgeInsets.only(right: 10),
-                            width: 15,
-                            height: 12,
-                            child: Image.asset(viewModel.trailingImage,
-                                color: viewModel.eyeColor),
+                      return Container(
+                        padding: const EdgeInsets.all(15),
+                        child: CustomTextField(
+                          borderRadius: 8,
+                          border: const OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                          hintText: S.of(context).hintPassword,
+                          labelText: S.of(context).lablePassword,
+                          controller: viewModel.passwordController,
+                          inputTextColor: ColorResource.color1a1a1a,
+                          inputFontWeight: FontWeight.normal,
+                          isObscure: snapshot!.data!,
+                          onFieldSubmitted: (value) => viewModel.loginOnTap(),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              viewModel.passwordVisibleChange();
+                            },
+                            icon: Container(
+                              alignment: Alignment.center,
+                              margin: const EdgeInsets.only(right: 10),
+                              width: 15,
+                              height: 12,
+                              child: Image.asset(viewModel.trailingImage,
+                                  color: viewModel.eyeColor),
+                            ),
                           ),
                         ),
                       );
