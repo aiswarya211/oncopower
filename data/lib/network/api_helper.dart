@@ -2,21 +2,23 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:data/network/envm_mode.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:data/network/preference_helper.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/error/local_error.dart';
 import 'package:flutter/foundation.dart';
 
-class DioHelper {
+class ApiHelper {
   Dio dio = Dio();
-  DioHelper() {
+  ApiHelper() {
     dio.options.baseUrl = NetworkProperties.baseUrl;
     dio.options.followRedirects = true;
     dio.options.headers[HttpHeaders.acceptHeader] = "application/json";
     dio.options.validateStatus = (status) => status! <= 400;
     dio.transformer = JsonTransformer();
     _setupAuthInterceptor();
+    _setupLogInterceptor();
   }
 
   void _setupAuthInterceptor() {
@@ -35,6 +37,12 @@ class DioHelper {
         },
       ),
     );
+  }
+
+  void _setupLogInterceptor() {
+    if (ENVMode.isInDevMode) {
+      dio.interceptors.add(LogInterceptor(responseBody: true));
+    }
   }
 }
 
