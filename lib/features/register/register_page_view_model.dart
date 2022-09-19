@@ -19,6 +19,8 @@ class RegisterPageViewModel extends BasePageViewModel
   final userType = "patient";
   bool isChecked = false;
 
+  final formKey = GlobalKey<FormState>();
+
   Stream<Resource<bool>> get isLoggedIn => _registerResponse.stream;
 
   Stream<Resource<bool>> get passwordObscured => _passwordObscure.stream;
@@ -51,7 +53,8 @@ class RegisterPageViewModel extends BasePageViewModel
 
         if (event.status == Status.success) {
           showSuccessToast(event.data!.message!);
-        _registerSucess.add(true);
+
+          _registerSucess.add(true);
           firstNameController.clear();
           lastNameController.clear();
           emailController.clear();
@@ -69,6 +72,7 @@ class RegisterPageViewModel extends BasePageViewModel
         passwordController.text,
         source,
         userType));
+       
   }
 
   void passwordVisibleChange() {
@@ -85,13 +89,7 @@ class RegisterPageViewModel extends BasePageViewModel
     isChecked = value;
   }
 
-  void checkBoxValidation(bool value) {
-    if (isChecked = value) {
-      showErrorState();
-    } else {
-      return;
-    }
-  }
+
 }
 
 mixin RegisterViewModelStreams {

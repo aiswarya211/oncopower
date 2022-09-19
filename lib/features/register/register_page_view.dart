@@ -2,7 +2,6 @@ import 'package:beamer/beamer.dart';
 import 'package:checkbox_formfield/checkbox_list_tile_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:oncopower/di/app_modules.dart';
 
 import 'package:oncopower/di/register_modules.dart';
 import 'package:oncopower/features/register/register_page_view_model.dart';
@@ -16,7 +15,6 @@ import 'package:oncopower/utils/color_resources.dart';
 import 'package:oncopower/utils/extensions.dart';
 import 'package:oncopower/utils/image_resources.dart';
 import 'package:oncopower/utils/resource.dart';
-import 'package:oncopower/utils/status.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../base/base_page.dart';
@@ -174,7 +172,7 @@ class _RegisterPage extends StatelessWidget {
                     inputFontWeight: FontWeight.normal,
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 Container(
                   padding: const EdgeInsets.all(15),
                   child: CustomTextField(
@@ -242,13 +240,6 @@ class _RegisterPage extends StatelessWidget {
                   ),
                   initialValue: viewModel.isChecked,
                   activeColor: ColorResource.color1fabf1,
-                  validator: (value) {
-                    if (!viewModel.isChecked) {
-                      return S.of(context).AcceptTermsAndCondition;
-                    } else {
-                      return null;
-                    }
-                  },
                 ),
                 const SizedBox(height: 25),
                 Container(

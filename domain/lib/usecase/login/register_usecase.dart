@@ -43,27 +43,6 @@ class RegisterUseCaseParams extends Params {
   Either<AppError, bool> verify() {
     ValidationState state;
 
-    state = Validator.validate(firstName, rules: ['firstName']);
-    if (state.status) {
-      return Left(
-        AppError(
-          error: ErrorInfo(message: 'firstName ${state.error}'),
-          type: ErrorType.ui,
-          cause: Exception(),
-        ),
-      );
-    }
-
-    state = Validator.validate(lastName, rules: ['lastName']);
-    if (state.status) {
-      return Left(
-        AppError(
-          error: ErrorInfo(message: 'lastName ${state.error}'),
-          type: ErrorType.ui,
-          cause: Exception(),
-        ),
-      );
-    }
     state = Validator.validate(emailId, rules: ['email']);
     if (!state.status) {
       return Left(AppError(
