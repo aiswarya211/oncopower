@@ -2,6 +2,7 @@ import 'package:beamer/beamer.dart';
 import 'package:checkbox_formfield/checkbox_list_tile_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:oncopower/di/app_modules.dart';
 
 import 'package:oncopower/di/register_modules.dart';
 import 'package:oncopower/features/register/register_page_view_model.dart';
@@ -15,6 +16,7 @@ import 'package:oncopower/utils/color_resources.dart';
 import 'package:oncopower/utils/extensions.dart';
 import 'package:oncopower/utils/image_resources.dart';
 import 'package:oncopower/utils/resource.dart';
+import 'package:oncopower/utils/status.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../base/base_page.dart';
@@ -24,18 +26,10 @@ class RegisterPageView extends BasePageViewWidget<RegisterPageViewModel> {
       : super(providerBase, key: key);
   @override
   Widget build(BuildContext context, RegisterPageViewModel model) {
-    return AppStreamBuilder<Resource<bool>>(
-        stream: model.isLoggedIn,
-        initialData: Resource.success(data: false),
-        dataBuilder: (context, snapshot) {
-          // if (snapshot!.status == Status.success && snapshot.data!) {
-          //   context.read(appViewModelProvider).();
-          // }
-          return ScreenTypeLayout.builder(
-            desktop: (BuildContext context) => const _WebLayout(),
-            mobile: (BuildContext context) => const _MobileLayout(),
-          );
-        });
+    return ScreenTypeLayout.builder(
+      desktop: (BuildContext context) => const _WebLayout(),
+      mobile: (BuildContext context) => const _MobileLayout(),
+    );
   }
 }
 
@@ -44,6 +38,7 @@ class _WebLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    listenRegisterSuccess(context);
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
@@ -60,6 +55,15 @@ class _WebLayout extends StatelessWidget {
       ),
     );
   }
+
+  void listenRegisterSuccess(BuildContext context) {
+    final viewModel = context.read(registerModuleProvider);
+    viewModel.registerSucessStream.listen((event) {
+      if (event) {
+        context.beamToNamed("/login");
+      }
+    });
+  }
 }
 
 class _MobileLayout extends StatelessWidget {
@@ -67,6 +71,7 @@ class _MobileLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    listenRegisterSuccess(context);
     return Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -82,6 +87,15 @@ class _MobileLayout extends StatelessWidget {
             ],
           ),
         ));
+  }
+
+  void listenRegisterSuccess(BuildContext context) {
+    final viewModel = context.read(registerModuleProvider);
+    viewModel.registerSucessStream.listen((event) {
+      if (event) {
+        context.beamToNamed("/login");
+      }
+    });
   }
 }
 

@@ -51,7 +51,7 @@ class RegisterPageViewModel extends BasePageViewModel
 
         if (event.status == Status.success) {
           showSuccessToast(event.data!.message!);
-          _registerResponse.add(Resource.success(data: true));
+        _registerSucess.add(true);
           firstNameController.clear();
           lastNameController.clear();
           emailController.clear();

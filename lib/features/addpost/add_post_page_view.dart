@@ -65,6 +65,7 @@ class _WebLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    listenAddPostSuccess(context);
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
@@ -79,6 +80,15 @@ class _WebLayout extends StatelessWidget {
       ),
     );
   }
+
+  void listenAddPostSuccess(BuildContext context) {
+    final viewModel = context.read(addPostModuleProvider);
+    viewModel.addPostSucessStream.listen((event) {
+      if (event) {
+        context.beamToNamed("/feed");
+      }
+    });
+  }
 }
 
 class _MobileLayout extends StatelessWidget {
@@ -86,6 +96,7 @@ class _MobileLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    listenAddPostSuccess(context);
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
@@ -99,6 +110,15 @@ class _MobileLayout extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void listenAddPostSuccess(BuildContext context) {
+    final viewModel = context.read(addPostModuleProvider);
+    viewModel.addPostSucessStream.listen((event) {
+      if (event) {
+        context.beamToNamed("/feed");
+      }
+    });
   }
 }
 
@@ -138,7 +158,10 @@ class _AddPostAppBar extends StatelessWidget {
           Padding(
             padding: context.isDesktop
                 ? const EdgeInsets.only(left: 800)
-                : const EdgeInsets.only(bottom: 10,top: 40,),
+                : const EdgeInsets.only(
+                    bottom: 10,
+                    top: 40,
+                  ),
             child: Container(
               alignment: Alignment.centerLeft,
               child: CustomTextButton(
